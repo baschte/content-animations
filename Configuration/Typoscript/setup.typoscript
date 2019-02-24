@@ -1,0 +1,27 @@
+# higher_education_package
+plugin.tx_highereducationpackage {
+	contentelements {
+		layoutRootPaths.20 = EXT:content_animations/Resources/Private/Layouts/
+	}
+}
+
+# fluid_styled_content
+lib.contentElement {
+	layoutRootPaths.20 = EXT:content_animations/Resources/Private/Layouts/
+}
+
+# include js to footer
+page {
+	cssInline {
+		1000 = FILE
+		1000.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css
+	}
+
+	jsFooterInline {
+		1000 = FILE
+		1000.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.js
+
+		1001 = TEXT
+		1001.value = AOS.init();
+	}
+}

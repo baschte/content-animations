@@ -1,0 +1,27 @@
+{
+    "name": "baschte/content-animations",
+    "type": "typo3-cms-extension",
+    "description": "TYPO3 CMS extension to animate your content elements",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "authors": [
+        {
+            "name": "Sebastian Richter",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Baschte\\ContentAnimations\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Baschte\\ContentAnimations\\Tests\\": "Tests"
+        }
+    }
+}
