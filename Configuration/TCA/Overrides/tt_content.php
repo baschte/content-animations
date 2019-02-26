@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 $tempColumns = [
-    'content_animation' => [
+    'tx_content_animations_animation' => [
         'config' => [
             'items' => [
                 ['none', ''],

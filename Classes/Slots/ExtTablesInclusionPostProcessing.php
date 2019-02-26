@@ -32,7 +32,7 @@ class ExtTablesInclusionPostProcessing
         $GLOBALS['TCA'] = $tca;
 
         // add new animation field to all TCA types
-        ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Animation,content_animation');
+        ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Animation,tx_content_animations_animation');
 
         // return the modified global TCA definition
         return [$GLOBALS['TCA']];
