@@ -1,13 +1,13 @@
 # support for higher_education_package
 plugin.tx_highereducationpackage {
 	contentelements {
-		layoutRootPaths.20 = EXT:content_animations/Resources/Private/Layouts/
+		layoutRootPaths.20 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/
 	}
 }
 
 # support for fluid_styled_content
 lib.contentElement {
-	layoutRootPaths.20 = EXT:content_animations/Resources/Private/Layouts/
+	layoutRootPaths.20 = EXT:content_animations/Resources/Private/Layouts/FluidStyledContent/
 }
 
 # include necessary aos js and css to footer
