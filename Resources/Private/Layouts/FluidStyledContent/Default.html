@@ -3,7 +3,7 @@
     <f:if condition="{data.frame_class} != none">
         <f:then>
 
-            <div id="c{data.uid}" data-aos="{data.tx_content_animations_animation}" data-aos-duration="800" data-aos-once="false" data-aos-mirror="true" class="frame frame--type-{data.CType}{f:if(condition: data.space_before_class, then: ' frame--{data.space_before_class}-margin-top')}{f:if(condition: data.space_after_class, then: ' frame--{data.space_after_class}-margin-bottom')}">
+            <div id="c{data.uid}" data-aos="{data.tx_content_animations_animation}" data-aos-duration="{data.tx_content_animations_duration}" data-aos-delay="{data.tx_content_animations_delay}" data-aos-once="false" data-aos-mirror="true" class="frame frame--type-{data.CType}{f:if(condition: data.space_before_class, then: ' frame--{data.space_before_class}-margin-top')}{f:if(condition: data.space_after_class, then: ' frame--{data.space_after_class}-margin-bottom')}">
                 <f:if condition="{data._LOCALIZED_UID}">
                     <a id="c{data._LOCALIZED_UID}"></a>
                 </f:if>

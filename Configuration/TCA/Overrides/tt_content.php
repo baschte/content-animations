@@ -51,6 +51,42 @@ $tempColumns = [
         'exclude' => '1',
         'label' => 'Animation (translate)',
     ],
+    'tx_content_animations_duration' => [
+        'config' => [
+            'type' => 'input',
+            'size' => 5,
+            'eval' => 'trim,int',
+            'range' => [
+                'lower' => 0,
+                'upper' => 3000,
+            ],
+            'default' => 800,
+            'slider' => [
+                'step' => 50,
+                'width' => 200,
+            ],
+        ],
+        'exclude' => '1',
+        'label' => 'Duration in milliseconds (translate)',
+    ],
+    'tx_content_animations_delay' => [
+        'config' => [
+            'type' => 'input',
+            'size' => 5,
+            'eval' => 'trim,int',
+            'range' => [
+                'lower' => 0,
+                'upper' => 3000,
+            ],
+            'default' => 0,
+            'slider' => [
+                'step' => 50,
+                'width' => 200,
+            ],
+        ],
+        'exclude' => '1',
+        'label' => 'Delay in milliseconds (translate)',
+    ],
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);

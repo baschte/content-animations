@@ -7,4 +7,4 @@ if (!defined('TYPO3_MODE')) {
 }
 
 // add animation tab to all ctypes
-ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Animation,tx_content_animations_animation');
+ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Animation,tx_content_animations_animation,tx_content_animations_duration,tx_content_animations_delay');
