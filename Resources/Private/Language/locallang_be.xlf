@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-02-25T12:00:00Z" product-name="content_animations">
+		<header/>
+		<body>
+			<trans-unit id="tab.animation" xml:space="preserve">
+				<source>Animation</source>
+			</trans-unit>
+
+			<trans-unit id="palette.animation-settings" xml:space="preserve">
+				<source>Animation settings</source>
+			</trans-unit>
+
+			<trans-unit id="palette.timing-settings" xml:space="preserve">
+				<source>Timing settings</source>
+			</trans-unit>
+
+			<trans-unit id="label.animation" xml:space="preserve">
+				<source>Animation</source>
+			</trans-unit>
+
+			<trans-unit id="label.duration" xml:space="preserve">
+				<source>Duration in milliseconds</source>
+			</trans-unit>
+
+			<trans-unit id="label.delay" xml:space="preserve">
+				<source>Delay in milliseconds</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -7,4 +7,10 @@ if (!defined('TYPO3_MODE')) {
 }
 
 // add animation tab to all ctypes
-ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Animation,tx_content_animations_animation,tx_content_animations_duration,tx_content_animations_delay');
+ExtensionManagementUtility::addToAllTCAtypes('tt_content', '
+    --div--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:tab.animation,
+    --palette--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:palette.animation-settings;
+        tx_content_animations_animation,
+    --palette--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:palette.timing-settings;
+        tx_content_animations_timing'
+);
