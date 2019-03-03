@@ -26,6 +26,10 @@
 			<trans-unit id="label.delay" xml:space="preserve">
 				<source>Delay in milliseconds</source>
 			</trans-unit>
+
+			<trans-unit id="item.no-animation" xml:space="preserve">
+				<source>No animation</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

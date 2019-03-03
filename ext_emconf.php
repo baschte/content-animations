@@ -6,7 +6,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Content animations',
-    'description' => 'allows the editor to set a frontend animation for your content elements',
+    'description' => 'Set frontend animations to your tt_content elements',
     'category' => 'fe',
     'author' => 'Sebastian Richter',
     'author_email' => 'info@baschte.de',
@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '1.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.0-9.5.99',
+            'typo3' => '9.5.0-9.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -7,7 +7,7 @@ $tempColumns = [
     'tx_content_animations_animation' => [
         'config' => [
             'items' => [
-                ['none', ''],
+                ['LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:item.no-animation', ''],
                 ['Fade animations:', '--div--'],
                 ['fade-up', 'fade-up', 'EXT:content_animations/Resources/Public/Images/fade-up.gif'],
                 ['fade-down', 'fade-down', 'EXT:content_animations/Resources/Public/Images/fade-down.gif'],

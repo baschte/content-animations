@@ -32,6 +32,11 @@
 				<source>Delay in milliseconds</source>
 				<target>Verzögerung in Millisekunden</target>
 			</trans-unit>
+
+			<trans-unit id="item.no-animation" xml:space="preserve">
+				<source>No animation</source>
+				<target>Keine Animation</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
