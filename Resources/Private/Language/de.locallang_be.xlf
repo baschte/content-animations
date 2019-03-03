@@ -37,6 +37,26 @@
 				<source>No animation</source>
 				<target>Keine Animation</target>
 			</trans-unit>
+
+			<trans-unit id="item.fade-animations" xml:space="preserve">
+				<source>Fade animations:</source>
+				<target>Fade Animationen:</target>
+			</trans-unit>
+
+			<trans-unit id="item.flip-animations" xml:space="preserve">
+				<source>Flip animations:</source>
+				<target>Flip Animationen:</target>
+			</trans-unit>
+
+			<trans-unit id="item.slide-animations" xml:space="preserve">
+				<source>Slide animations:</source>
+				<target>Slide Animationen:</target>
+			</trans-unit>
+
+			<trans-unit id="item.zoom-animations" xml:space="preserve">
+				<source>Zoom animations:</source>
+				<target>Zoom Animationen:</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

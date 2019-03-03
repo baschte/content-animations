@@ -27,8 +27,24 @@
 				<source>Delay in milliseconds</source>
 			</trans-unit>
 
-			<trans-unit id="item.no-animation" xml:space="preserve">
-				<source>No animation</source>
+			<trans-unit id="item.no-animations" xml:space="preserve">
+				<source>No animations</source>
+			</trans-unit>
+
+			<trans-unit id="item.fade-animations" xml:space="preserve">
+				<source>Fade animations:</source>
+			</trans-unit>
+
+			<trans-unit id="item.flip-animations" xml:space="preserve">
+				<source>Flip animations:</source>
+			</trans-unit>
+
+			<trans-unit id="item.slide-animations" xml:space="preserve">
+				<source>Slide animations:</source>
+			</trans-unit>
+
+			<trans-unit id="item.zoom-animations" xml:space="preserve">
+				<source>Zoom animations:</source>
 			</trans-unit>
 		</body>
 	</file>
