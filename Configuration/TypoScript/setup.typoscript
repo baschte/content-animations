@@ -2,13 +2,13 @@
 plugin.tx_content_animations {
     variables {
         aos-easing = TEXT
-        aos-easing.value = {$plugin.tx_content_animations.easing}
+        aos-easing.value = {$plugin.tx_content_animations.aos-easing}
 
         aos-once = TEXT
-        aos-once.value = {$plugin.tx_content_animations.once}
+        aos-once.value = {$plugin.tx_content_animations.aos-once}
 
         aos-mirror = TEXT
-        aos-mirror.value = {$plugin.tx_content_animations.mirror}
+        aos-mirror.value = {$plugin.tx_content_animations.aos-mirror}
     }
 }
 
