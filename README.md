@@ -4,7 +4,7 @@
 ### What does it do
 It allows you to set frontend animations to your content if its scrolled into the browser viewport.\
 \
-![example of content_animations](https://raw.githubusercontent.com/baschte/content-animations/master/Documentation/example.png)
+![example of content_animations](https://raw.githubusercontent.com/baschte/content-animations/master/Documentation/example.gif)
 
 ### Configuration
 Include the static TypoScript to your template and you can start animating.

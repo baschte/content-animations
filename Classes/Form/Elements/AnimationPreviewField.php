@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
+use TYPO3\CMS\Form\Service\TranslationService;
 
 /**
  * Class AnimationPreviewField
@@ -33,6 +34,9 @@ class AnimationPreviewField implements NodeInterface
     
     /** @var NodeFactory $nodeFactory */
     protected $nodeFactory;
+
+    /** @var TranslationService $translationService */
+    protected $translationService;
 
     /**
      * Default field information enabled for this element.
@@ -55,12 +59,14 @@ class AnimationPreviewField implements NodeInterface
     {
         $this->data = $data;
         $this->nodeFactory = $nodeFactory;
+        $this->translationService = GeneralUtility::makeInstance(TranslationService::class);
     }
 
     /**
      * Main render method
-     *
-     * @return array As defined in initializeResultArray() of AbstractNode
+     * 
+     * @return array
+     * @throws \TYPO3\CMS\Backend\Form\Exception
      */
     public function render()
     {
@@ -191,18 +197,25 @@ class AnimationPreviewField implements NodeInterface
         $html[] =   '</div>';
         $html[] = '</div>';
 
-        $html[] = '<h2>Preview</h2>';
-        $html[] = '<div class="preview-content-animation">';
-        $html[] =   '<h3>Preview</h3>';
+        $html[] = '<div id="preview-content-animation">';
+        $html[] =   '<div class="preview-label" data-show-preview="false">'. $this->translationService->translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') .'</div>';
+        $html[] =   '<div class="ce-preview">';
+        $html[] =       '<span class="ce-preview__item"></span>';
+        $html[] =       '<span class="ce-preview__item"></span>';
+        $html[] =       '<span class="ce-preview__item"></span>';
+        $html[] =       '<span class="ce-preview__item ce-preview__item--xs"></span>';
+        $html[] =   '</div>';
         $html[] = '</div>';
 
         return [
             'html' => implode(LF, $html),
             'additionalInlineLanguageLabelFiles' => [],
             'stylesheetFiles' => [
-                'EXT:content_animations/Resources/Public/Styles/animation-preview.css'
+                'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css'
             ],
-            'requireJsModules' => [],
+            'requireJsModules' => [
+                'TYPO3/CMS/ContentAnimations/AnimationPreview'
+            ],
         ];
     }
 
