@@ -39,14 +39,10 @@ $tempColumns = [
                 ['zoom-out-right', 'zoom-out-right', 'EXT:content_animations/Resources/Public/Images/zoom-out-right.gif'],
                 ['zoom-out-left', 'zoom-out-left', 'EXT:content_animations/Resources/Public/Images/zoom-out-left.gif'],
             ],
-            'renderType' => 'selectSingle',
+            //'renderType' => 'selectSingle',
+            'renderType' => 'animationPreview',
             'type' => 'select',
             'size' => 1,
-            'fieldWizard' => [
-                'selectIcons' => [
-                    'disabled' => false
-                ]
-            ],
         ],
         'exclude' => '1',
         'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.animation',

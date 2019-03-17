@@ -57,6 +57,11 @@
 				<source>Zoom animations:</source>
 				<target>Zoom Animationen:</target>
 			</trans-unit>
+
+			<trans-unit id="preview-label" xml:space="preserve">
+				<source>Preview</source>
+				<target>Vorschau</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

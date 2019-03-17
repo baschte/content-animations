@@ -46,6 +46,10 @@
 			<trans-unit id="item.zoom-animations" xml:space="preserve">
 				<source>Zoom animations:</source>
 			</trans-unit>
+
+			<trans-unit id="preview-label" xml:space="preserve">
+				<source>Preview</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
