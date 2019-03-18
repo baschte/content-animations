@@ -5,7 +5,7 @@
  ***********************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Content animations',
+    'title' => 'Content Animations',
     'description' => 'This extension allows you to set nice animations to your content elements if they are scrolled into the browsers viewport. To install it include the static typoscript of content_animations to your template and you\'re good to go. Have fun! :-)',
     'category' => 'fe',
     'author' => 'Sebastian Richter',
@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = [
     'uploadfolder' => 0,
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.0.2',
+    'version' => '1.0.3',
     'constraints' => [
         'depends' => [
             'typo3' => '8.7.0-9.5.99',
