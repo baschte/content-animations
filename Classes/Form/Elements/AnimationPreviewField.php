@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
-use TYPO3\CMS\Form\Service\TranslationService;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Class AnimationPreviewField
@@ -31,11 +31,11 @@ class AnimationPreviewField implements NodeInterface
 {
     /** @var array $data*/
     protected $data;
-    
+
     /** @var NodeFactory $nodeFactory */
     protected $nodeFactory;
 
-    /** @var TranslationService $translationService */
+    /** @var LocalizationUtility $translationService */
     protected $translationService;
 
     /**
@@ -64,7 +64,7 @@ class AnimationPreviewField implements NodeInterface
 
     /**
      * Main render method
-     * 
+     *
      * @return array
      * @throws \TYPO3\CMS\Backend\Form\Exception
      */
@@ -74,7 +74,7 @@ class AnimationPreviewField implements NodeInterface
         $config = $parameterArray['fieldConf']['config'];
         $fieldInformationResult = $this->renderFieldInformation();
         $fieldInformationHtml = $fieldInformationResult['html'];
-        
+
         // Initialization:
         $selectId = StringUtility::getUniqueId('tceforms-select-');
         $selectItems = $parameterArray['fieldConf']['config']['items'];
