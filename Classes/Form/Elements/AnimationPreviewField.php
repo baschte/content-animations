@@ -35,9 +35,6 @@ class AnimationPreviewField implements NodeInterface
     /** @var NodeFactory $nodeFactory */
     protected $nodeFactory;
 
-    /** @var LocalizationUtility $translationService */
-    protected $translationService;
-
     /**
      * Default field information enabled for this element.
      *
@@ -59,7 +56,6 @@ class AnimationPreviewField implements NodeInterface
     {
         $this->data = $data;
         $this->nodeFactory = $nodeFactory;
-        $this->translationService = GeneralUtility::makeInstance(TranslationService::class);
     }
 
     /**
@@ -198,7 +194,7 @@ class AnimationPreviewField implements NodeInterface
         $html[] = '</div>';
 
         $html[] = '<div id="preview-content-animation">';
-        $html[] =   '<div class="preview-label" data-show-preview="false">'. $this->translationService->translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') .'</div>';
+        $html[] =   '<div class="preview-label" data-show-preview="false">'. LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') .'</div>';
         $html[] =   '<div class="ce-preview">';
         $html[] =       '<span class="ce-preview__item"></span>';
         $html[] =       '<span class="ce-preview__item"></span>';
