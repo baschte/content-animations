@@ -40,11 +40,7 @@ class AnimationPreviewField implements NodeInterface
      *
      * @var array
      */
-    protected $defaultFieldInformation = [
-        'tcaDescription' => [
-            'renderType' => 'tcaDescription',
-        ],
-    ];
+    protected $defaultFieldInformation = [];
 
     /**
      * All nodes get an instance of the NodeFactory and the main data array
