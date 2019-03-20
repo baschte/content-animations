@@ -1,8 +1,8 @@
-# Content animations
+# Content Animations
 `content_animations` is a extension for the TYPO3 content management system.
 
 ### What does it do
-It allows you to set frontend animations to your content if its scrolled into the browser viewport.\
+It allows you to set frontend animations to your content if its scrolled into the browsers viewport.\
 \
 ![example of content_animations](https://raw.githubusercontent.com/baschte/content-animations/master/Documentation/Images/Example.gif)
 
