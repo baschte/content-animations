@@ -97,6 +97,3 @@ $GLOBALS['TCA']['tt_content']['palettes']['tx_content_animations_timing'] = [
 
 // add all fields to tt_content
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
-
-// add static typoscript include
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript', 'Content animations');

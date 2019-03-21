@@ -1,0 +1,8 @@
+# import default setup for content_animations
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/setup.typoscript">
+
+# support for fluid_styled_content
+lib.contentElement {
+	layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/FluidStyledContent/
+    variables < plugin.tx_content_animations.variables
+}

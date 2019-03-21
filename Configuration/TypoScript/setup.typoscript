@@ -12,20 +12,6 @@ plugin.tx_content_animations {
     }
 }
 
-# support for higher_education_package
-plugin.tx_highereducationpackage {
-	contentelements {
-		layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/
-        variables < plugin.tx_content_animations.variables
-	}
-}
-
-# support for fluid_styled_content
-lib.contentElement {
-	layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/FluidStyledContent/
-    variables < plugin.tx_content_animations.variables
-}
-
 # include necessary aos js and css to footer
 page {
 	cssInline {
