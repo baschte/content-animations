@@ -1,7 +1,7 @@
 # import default setup for content_animations
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/setup.typoscript">
 
-# support for higher_education_package
+# support for higher_education_package v9
 plugin.tx_highereducationpackage {
 	contentelements {
 		layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/v9/

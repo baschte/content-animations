@@ -1,7 +1,7 @@
 # import default setup for content_animations
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/setup.typoscript">
 
-# support for bootstrap_package v10
+# support for bootstrap_package v8
 lib.contentElement {
 	layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/BootstrapPackage/v8/
     variables < plugin.tx_content_animations.variables
