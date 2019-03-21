@@ -1,0 +1,2 @@
+# cat=basic/enable; type=boolean; label=Disables the automatic append of tab Animations to all CTypes
+disableAddAnimationsTab = 0
