@@ -4,7 +4,7 @@
 # support for higher_education_package
 plugin.tx_highereducationpackage {
 	contentelements {
-		layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/
+		layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/v9/
         variables < plugin.tx_content_animations.variables
 	}
 }
