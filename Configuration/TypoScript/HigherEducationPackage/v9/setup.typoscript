@@ -3,8 +3,8 @@
 
 # support for higher_education_package v9
 plugin.tx_highereducationpackage {
-	contentelements {
-		layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/v9/
+    contentelements {
+        layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/v9/
         variables < plugin.tx_content_animations.variables
-	}
+    }
 }
