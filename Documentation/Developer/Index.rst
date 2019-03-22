@@ -7,7 +7,7 @@
 Developer Corner
 ================
 
-Content Animations comes with an out of the box **fluid_styled_content** and **higher_education_package** support and dont need any configuration if you use one of these extensions in your project.
+Content Animations comes with an out of the box **bootstrap_package v10 v9 and v8**, **fluid_styled_content** and **higher_education_package v9** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
 This extension extends the **Default Fluid Layout** for the necessary data-attributes to get the animation stuff working in the frontend.
 
 
