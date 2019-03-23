@@ -25,3 +25,9 @@ If installed and activated just include the **static typoscript** to your site t
    - Content Animations: Bootstrap Package v8.x
    - Content Animations: Fluid Styled Content
    - Content Animations: Higher Education Package v9
+
+.. hint::
+
+  Please note that the version info in the inlcude itself isn't based on the TYPO3 version. It's the major version of, for example, the Bootstrap Package itself. You can get that info in the composer.json or the extension manager.
+
+  **Example:** If you use the Bootstrap Package in version 10.0.6 in your project you have to include ``Content Animations: Bootstrap Package v10.x``. If it's in version 9 the ``Content Animations: Bootstrap Package v9.x`` and so on.
