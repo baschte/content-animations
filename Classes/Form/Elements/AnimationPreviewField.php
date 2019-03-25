@@ -191,7 +191,7 @@ class AnimationPreviewField implements NodeInterface
 
         $html[] = '<div id="preview-content-animation">';
         $html[] =   '<div class="preview-label" data-show-preview="false">'. LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') .'</div>';
-        $html[] =   '<div class="ce-preview">';
+        $html[] =   '<div class="ce-preview" data-aos="'. $parameterArray['itemFormElValue']['0'] .'">';
         $html[] =       '<span class="ce-preview__item"></span>';
         $html[] =       '<span class="ce-preview__item"></span>';
         $html[] =       '<span class="ce-preview__item"></span>';
@@ -203,7 +203,8 @@ class AnimationPreviewField implements NodeInterface
             'html' => implode(LF, $html),
             'additionalInlineLanguageLabelFiles' => [],
             'stylesheetFiles' => [
-                'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css'
+                'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css',
+                'EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css'
             ],
             'requireJsModules' => [
                 'TYPO3/CMS/ContentAnimations/AnimationPreview'

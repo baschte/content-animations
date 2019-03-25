@@ -5,39 +5,67 @@ define([ 'jquery' ], function ($) {
     var AnimationPreview = {
         $previewLabel: $('#preview-content-animation .preview-label'),
         $previewElement: $('#preview-content-animation .ce-preview'),
-        $animationElement: $('[name*="[tx_content_animations_animation]"]'),
-        $durationElement: $('[data-formengine-input-name*="[tx_content_animations_duration]"]'),
-        $durationValueElement: $('[name*="[tx_content_animations_duration]"]'),
+        $animationSelectField: $('[name*="[tx_content_animations_animation]"]'),
+        $durationInputField: $('[data-formengine-input-name*="[tx_content_animations_duration]"]'),
+        $durationValueInputField: $('[name*="[tx_content_animations_duration]"]'),
+        defaultPreviewDuration: 800,
+        defaultPreviewDelay: 1000,
     };
 
     /**
-     * Initialize AnimationPreview
-     */
-    AnimationPreview.initialize = function () {
-        if (AnimationPreview.$animationElement.index() > -1) {
-            AnimationPreview.$animationElement.on('change', AnimationPreview.handleAnimationChange);
-
-            // set duration on initialization
-            AnimationPreview.setCss({ animationName: AnimationPreview.$animationElement.val() });
-        }
-
-        if (AnimationPreview.$durationElement.index() > -1 && AnimationPreview.$durationValueElement.index() > -1) {
-            AnimationPreview.$durationElement.on('change', AnimationPreview.handleDurationChange);
-
-            // set duration on initialization
-            AnimationPreview.setCss({ animationDuration: (AnimationPreview.$durationValueElement.val() / 1000) * 3.33 + 's' });
-        }
-
-    };
-
-    /**
-     * set css values to preview Element
+     * change the preview animation
      * @private
-     * @param cssValueObject
      */
-    AnimationPreview.setCss = function (cssValueObject) {
-        if(!cssValueObject) return;
-        AnimationPreview.$previewElement.css(cssValueObject);
+    AnimationPreview.changeAnimation = function (duration, delay, removeAnimation) {
+        if(removeAnimation) {
+            AnimationPreview.$previewElement.removeClass('aos-initialized aos-animate').css({'transition-duration': '0s'});
+        } else {
+            AnimationPreview.$previewElement.removeAttr('style').addClass('aos-initialized aos-animate');
+        }
+        AnimationPreview.defaultPreviewDuration = parseInt(duration);
+        AnimationPreview.defaultPreviewDelay = parseInt(delay);
+    };
+
+    /**
+     * resets the preview animation
+     * @private
+     */
+    AnimationPreview.restartAnimation = function () {
+        AnimationPreview.$previewElement.removeClass('aos-initialized aos-animate').css({'transition-duration': '0s'});
+        AnimationPreview.defaultPreviewDuration = 250;
+        AnimationPreview.defaultPreviewDelay = 0;
+
+        clearInterval(AnimationPreview.defaultInterval);
+        AnimationPreview.playAnimationLoop();
+    };
+
+    /**
+     * start the animation preview
+     * @private
+     */
+    AnimationPreview.playAnimationLoop = function () {
+        AnimationPreview.defaultInterval = setInterval(function() {
+            if(AnimationPreview.$previewElement.hasClass('aos-animate')) {
+                // remove animationPreview
+                AnimationPreview.changeAnimation(250,0,true);
+            } else {
+                // add animationPreview
+                AnimationPreview.changeAnimation(parseInt(AnimationPreview.$durationValueInputField.val()), 1000, false);
+            }
+            // clearInterval and restart previewLoop
+            clearInterval(AnimationPreview.defaultInterval);
+            AnimationPreview.playAnimationLoop();
+        }, AnimationPreview.defaultPreviewDuration + AnimationPreview.defaultPreviewDelay);
+    };
+
+    /**
+     * set attribute values to preview Element
+     * @private
+     * @param attrValueObject
+     */
+    AnimationPreview.setAttr = function (attrValueObject) {
+        if(!attrValueObject) return;
+        AnimationPreview.$previewElement.attr(attrValueObject);
     };
 
     /**
@@ -47,8 +75,9 @@ define([ 'jquery' ], function ($) {
      */
     AnimationPreview.handleAnimationChange = function (event) {
         if(!event) return;
-        AnimationPreview.setCss({ animationName: event.target.value });
         AnimationPreview.$previewLabel.attr('data-show-preview', 'true');
+        AnimationPreview.setAttr({ 'data-aos': event.target.value });
+        AnimationPreview.restartAnimation();
     };
 
     /**
@@ -58,9 +87,38 @@ define([ 'jquery' ], function ($) {
      */
     AnimationPreview.handleDurationChange = function (event) {
         if(!event) return;
-        AnimationPreview.setCss({ animationDuration: (event.target.value / 1000) * 3.33 + 's' });
+        AnimationPreview.defaultPreviewDuration = parseInt(event.target.value);
+        AnimationPreview.setAttr({ 'data-aos-duration': AnimationPreview.defaultPreviewDuration });
+        AnimationPreview.restartAnimation();
     };
 
+    /**
+     * Initialize AnimationPreview
+     */
+    AnimationPreview.initialize = function () {
+        // if animationField is found in this form
+        if (AnimationPreview.$animationSelectField.index() > -1) {
+            AnimationPreview.$animationSelectField.on('change', AnimationPreview.handleAnimationChange);
+
+            // set duration on initialization
+            AnimationPreview.setAttr({ 'data-aos': AnimationPreview.$animationSelectField.val() });
+        }
+
+        // if durationField is found in this form
+        if (AnimationPreview.$durationInputField.index() > -1 && AnimationPreview.$durationValueInputField.index() > -1) {
+            AnimationPreview.$durationInputField.on('change', AnimationPreview.handleDurationChange);
+            AnimationPreview.defaultPreviewDuration = parseInt(AnimationPreview.$durationValueInputField.val());
+
+            // set duration on initialization
+            AnimationPreview.setAttr({ 'data-aos-duration': parseInt(AnimationPreview.$durationValueInputField.val()) });
+        }
+
+        // initialize preview and start previewLoop
+        AnimationPreview.$previewElement.addClass('aos-initialized aos-animate');
+        AnimationPreview.playAnimationLoop();
+    };
+
+    // call init
     AnimationPreview.initialize();
 
     return AnimationPreview;
