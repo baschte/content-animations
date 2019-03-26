@@ -8,6 +8,7 @@ define([ 'jquery' ], function ($) {
         $animationSelectField: $('[name*="[tx_content_animations_animation]"]'),
         $durationInputField: $('[data-formengine-input-name*="[tx_content_animations_duration]"]'),
         $durationValueInputField: $('[name*="[tx_content_animations_duration]"]'),
+        defaultClasses: 'aos-initialized aos-animate',
         defaultPreviewDuration: 800,
         defaultPreviewDelay: 1000,
     };
@@ -18,9 +19,9 @@ define([ 'jquery' ], function ($) {
      */
     AnimationPreview.changeAnimation = function (duration, delay, removeAnimation) {
         if(removeAnimation) {
-            AnimationPreview.$previewElement.removeClass('aos-initialized aos-animate').css({'transition-duration': '0s'});
+            AnimationPreview.$previewElement.removeClass(AnimationPreview.defaultClasses).css({'transition-duration': '0s'});
         } else {
-            AnimationPreview.$previewElement.removeAttr('style').addClass('aos-initialized aos-animate');
+            AnimationPreview.$previewElement.removeAttr('style').addClass(AnimationPreview.defaultClasses);
         }
         AnimationPreview.defaultPreviewDuration = parseInt(duration);
         AnimationPreview.defaultPreviewDelay = parseInt(delay);
@@ -31,7 +32,7 @@ define([ 'jquery' ], function ($) {
      * @private
      */
     AnimationPreview.restartAnimation = function () {
-        AnimationPreview.$previewElement.removeClass('aos-initialized aos-animate').css({'transition-duration': '0s'});
+        AnimationPreview.$previewElement.removeClass(AnimationPreview.defaultClasses).css({'transition-duration': '0s'});
         AnimationPreview.defaultPreviewDuration = 250;
         AnimationPreview.defaultPreviewDelay = 0;
 
@@ -45,7 +46,7 @@ define([ 'jquery' ], function ($) {
      */
     AnimationPreview.playAnimationLoop = function () {
         AnimationPreview.defaultInterval = setInterval(function() {
-            if(AnimationPreview.$previewElement.hasClass('aos-animate')) {
+            if(AnimationPreview.$previewElement.hasClass(AnimationPreview.defaultClasses)) {
                 // remove animationPreview
                 AnimationPreview.changeAnimation(250,0,true);
             } else {
@@ -114,7 +115,7 @@ define([ 'jquery' ], function ($) {
         }
 
         // initialize preview and start previewLoop
-        AnimationPreview.$previewElement.addClass('aos-initialized aos-animate');
+        AnimationPreview.$previewElement.addClass(AnimationPreview.defaultClasses);
         AnimationPreview.playAnimationLoop();
     };
 
