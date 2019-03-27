@@ -1,0 +1,6 @@
+################
+### FEATURES ###
+################
+
+# cat=Features; type=boolean; label=Don't show the animation value rendered as a label in the footer of the content element preview
+disableFooterAnimationPreviewLabel = 0
