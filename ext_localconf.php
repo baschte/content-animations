@@ -15,6 +15,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552428667] = [
 $extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['content_animations']);
 
 // register PageLayoutViewAnimationFooterPreview to tt_content_drawFooter hook if this feature is active
-if(empty($extensionConfiguration['disableFooterAnimationPreviewLabel']) || !$extensionConfiguration['disableFooterAnimationPreviewLabel']) {
+if(empty($extensionConfiguration['hideFooterAnimationLabel']) || !$extensionConfiguration['hideFooterAnimationLabel']) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawFooter'][] = \Baschte\ContentAnimations\Hooks\PageLayoutView\PageLayoutViewAnimationFooterPreview::class;
 }
