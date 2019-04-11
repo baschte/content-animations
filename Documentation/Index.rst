@@ -57,5 +57,6 @@ Content Animations
    Installation/Index
    Editor/Index
    Developer/Index
+   Administrator/Index
    ChangeLog/Index
    Links
