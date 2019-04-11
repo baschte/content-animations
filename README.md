@@ -10,7 +10,7 @@ It allows you to set frontend animations to your content if its scrolled into th
 The extension is developed and tested with TYPO3 8.7 and 9.5 LTS (not tested but maybe it's also working on TYPO3 7.6 LTS). It has an out of the box `bootstrap_package v8, v9 and v10`, `fluid_styled_content` and `higher_education_package v9` support.
 
 ### Configuration
-Include the static TypoScript for `Content Animations: bootstrap_package`, `Content Animations: fluid_styled_content` or `Content Animations: higher_education_package` to your template and you can start animating.
+Include the static TypoScript for `Content Animations: bootstrap_package v8, v9 or v10`, `Content Animations: fluid_styled_content` or `Content Animations: higher_education_package v9` to your template and you can start animating.
 
 ### Extending
 `content_animations` comes with an extended `Default` fluid layout which adds the necessary markup to get the animations working. If you want to extend the layout just copy it to your extension, remove or update the content elements `layoutRootPaths` and you're good to go.

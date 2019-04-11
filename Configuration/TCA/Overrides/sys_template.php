@@ -8,4 +8,4 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/BootstrapPackage/v9', 'Content Animations: Bootstrap Package v9.x');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/BootstrapPackage/v8', 'Content Animations: Bootstrap Package v8.x');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/FluidStyledContent', 'Content Animations: Fluid Styled Content');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/HigherEducationPackage', 'Content Animations: Higher Education Package v9');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/HigherEducationPackage/v9', 'Content Animations: Higher Education Package v9');

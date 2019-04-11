@@ -12,6 +12,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+1.2.0 - 2019-04-11
+==================
+
+Features
+^^^^^^^^
+- [FEATURE] adding a new and simple fade animation
+- [!!!][FEATURE] using the same library in the backend for the animation preview as in the frontend to animate the elements
+- [FEATURE] render the animation value as a label to the preview of any content element => can be deactivated via the extension setting
+- [FEATURE] option to deactivate the behaviour where the animation tab is appending to all CTypes => can be also deactivated via the extension setting
+
+Bugfixes
+^^^^^^^^
+- [BUGFIX] fixing the support for the higher_eductaion_package
+
 1.1.0 - 2019-03-21
 ==================
 

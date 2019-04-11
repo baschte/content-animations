@@ -9,6 +9,7 @@ $tempColumns = [
             'items' => [
                 ['LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:item.no-animation', ''],
                 ['LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:item.fade-animations', '--div--'],
+                ['fade', 'fade', 'EXT:content_animations/Resources/Public/Images/fade.gif'],
                 ['fade-up', 'fade-up', 'EXT:content_animations/Resources/Public/Images/fade-up.gif'],
                 ['fade-down', 'fade-down', 'EXT:content_animations/Resources/Public/Images/fade-down.gif'],
                 ['fade-right', 'fade-right', 'EXT:content_animations/Resources/Public/Images/fade-right.gif'],

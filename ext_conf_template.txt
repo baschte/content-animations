@@ -1,0 +1,9 @@
+################
+### FEATURES ###
+################
+
+# cat=Features; type=boolean; label=Hide the Animation Footer Label: If active the Animation value isn't rendered anymore to the Footer Label of the content element
+hideFooterAnimationLabel = 0
+
+# cat=Features; type=boolean; label=Disable the automatic append of the Animations tab to all CTypes
+disableAddAnimationsTab = 0
