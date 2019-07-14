@@ -20,6 +20,7 @@ If installed and activated just include the **static typoscript** to your site t
 .. note::
 
   You have to choose between these static includes from ``content_animations``.
+   - Content Animations: Bootstrap Package v11.x
    - Content Animations: Bootstrap Package v10.x
    - Content Animations: Bootstrap Package v9.x
    - Content Animations: Bootstrap Package v8.x
