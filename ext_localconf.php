@@ -11,6 +11,14 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552428667] = [
     'class' => \Baschte\ContentAnimations\Form\Elements\AnimationPreviewField::class
 ];
 
+// register own typoscript FILECONTENT cObject
+if(!isset($GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects']['FILECONTENT'])) {
+	$GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects'] = array_merge(
+		$GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects'],
+		['FILECONTENT' => \Baschte\ContentAnimations\ContentObject\FileContentContentObject::class]
+	);
+}
+
 //@todo: change this to new ExtensionConfiguration api on the next TYPO3 version
 $extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['content_animations']);
 
