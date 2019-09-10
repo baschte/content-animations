@@ -13,8 +13,9 @@ namespace Baschte\ContentAnimations\ContentObject;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\ContentObject\AbstractContentObject;
-use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Contains FILECONTENT class object.
@@ -32,7 +33,13 @@ class FileContentContentObject extends AbstractContentObject
         $fileContent = '';
         $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
         try {
-            $file = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($file);
+            // check if TYPO3 version 9 or higher
+            if(explode(".", VersionNumberUtility::getCurrentTypo3Version())[0] > 8) {
+                $file = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)->sanitize($file);
+            } else {
+                // fallback for TYPO3 version 8 and below
+                $file = $this->getTypoScriptFrontendController()->tmpl->getFileName($file);
+            }
             if (file_exists($file)) {
                 $fileContent = file_get_contents($file);
             }
@@ -40,5 +47,13 @@ class FileContentContentObject extends AbstractContentObject
             // do nothing
         }
         return $fileContent;
+    }
+
+    /**
+     * @return TypoScriptFrontendController
+     */
+    protected function getTypoScriptFrontendController()
+    {
+        return $GLOBALS['TSFE'];
     }
 }
