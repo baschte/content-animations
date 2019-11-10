@@ -10,20 +10,24 @@ plugin.tx_content_animations {
         aos-mirror = TEXT
         aos-mirror.value = {$plugin.tx_content_animations.aos-mirror}
     }
+
+    dataProcessing {
+        78911002 = Baschte\ContentAnimations\DataProcessing\AnimationsProcessor
+    }
 }
 
 # include necessary aos js and css to footer
 page {
-	cssInline {
-		1000 = FILE
-		1000.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css
-	}
+    cssInline {
+        1000 = FILE
+        1000.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css
+    }
 
-	jsFooterInline {
-		1000 = FILE
-		1000.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.js
+    jsFooterInline {
+        1000 = FILE
+        1000.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.js
 
-		1001 = TEXT
-		1001.value = AOS.init();
-	}
+        1001 = TEXT
+        1001.value = AOS.init();
+    }
 }

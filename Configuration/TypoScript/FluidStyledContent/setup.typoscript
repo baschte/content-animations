@@ -3,6 +3,6 @@
 
 # support for fluid_styled_content
 lib.contentElement {
-	layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/FluidStyledContent/
-    variables < plugin.tx_content_animations.variables
+  layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/FluidStyledContent/
+  variables < plugin.tx_content_animations.variables
 }

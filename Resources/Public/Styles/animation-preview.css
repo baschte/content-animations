@@ -14,8 +14,8 @@
 
 #preview-content-animation .preview-label {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     font-size: 1rem;
     background: #d1e2bd;
     color: #333;
@@ -27,6 +27,7 @@
     border-radius: 0 0 0 3px;
     transition: opacity .2s ease-out;
 }
+
 #preview-content-animation .preview-label[data-show-preview="true"] {
     opacity: 1;
 }
@@ -42,13 +43,14 @@
     margin-right: auto;
 
     -webkit-animation-duration: 2.6s;
-            animation-duration: 2.6s;
+    animation-duration: 2.6s;
     -webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
+
 #preview-content-animation .ce-preview .ce-preview__item {
     content: " ";
     display: block;
@@ -57,6 +59,7 @@
     background: #333;
     margin-bottom: 5px;
 }
+
 #preview-content-animation .ce-preview .ce-preview__item--xs {
     width: 50%;
 }

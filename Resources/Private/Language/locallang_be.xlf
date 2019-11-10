@@ -27,8 +27,16 @@
 				<source>Delay in milliseconds</source>
 			</trans-unit>
 
+			<trans-unit id="label.offset" xml:space="preserve">
+				<source>Offset in pixels</source>
+			</trans-unit>
+
 			<trans-unit id="item.no-animation" xml:space="preserve">
 				<source>No animation</source>
+			</trans-unit>
+
+			<trans-unit id="item.default" xml:space="preserve">
+				<source>Default</source>
 			</trans-unit>
 
 			<trans-unit id="item.fade-animations" xml:space="preserve">

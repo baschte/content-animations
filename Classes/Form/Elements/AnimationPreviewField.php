@@ -29,7 +29,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  */
 class AnimationPreviewField implements NodeInterface
 {
-    /** @var array $data*/
+    /** @var array $data */
     protected $data;
 
     /** @var NodeFactory $nodeFactory */
@@ -147,7 +147,6 @@ class AnimationPreviewField implements NodeInterface
             $options .= ($optionGroup ? '</optgroup>' : '');
         }
 
-
         $selectAttributes = [
             'id' => $selectId,
             'name' => $parameterArray['itemFormElName'],
@@ -164,39 +163,39 @@ class AnimationPreviewField implements NodeInterface
         $html = [];
         $html[] = '<div class="formengine-field-item t3js-formengine-field-item">';
         $html[] = $fieldInformationHtml;
-        $html[] =   '<div class="form-control-wrap">';
-        $html[] =       '<div class="form-wizards-wrap">';
-        $html[] =           '<div class="form-wizards-element">';
+        $html[] = '<div class="form-control-wrap">';
+        $html[] = '<div class="form-wizards-wrap">';
+        $html[] = '<div class="form-wizards-element">';
         if ($hasIcons) {
-            $html[] =           '<div class="input-group">';
-            $html[] =               '<span class="input-group-addon input-group-icon">';
-            $html[] =                   $selectedIcon;
-            $html[] =               '</span>';
+            $html[] = '<div class="input-group">';
+            $html[] = '<span class="input-group-addon input-group-icon">';
+            $html[] = $selectedIcon;
+            $html[] = '</span>';
         }
-        $html[] =                   '<select ' . GeneralUtility::implodeAttributes($selectAttributes, true) . '>';
-        $html[] =                       $options;
-        $html[] =                   '</select>';
+        $html[] = '<select ' . GeneralUtility::implodeAttributes($selectAttributes, true) . '>';
+        $html[] = $options;
+        $html[] = '</select>';
         if ($hasIcons) {
-            $html[] =           '</div>';
+            $html[] = '</div>';
         }
-        $html[] =           '</div>';
+        $html[] = '</div>';
         if (!$disabled && !empty($fieldWizardHtml)) {
-            $html[] =       '<div class="form-wizards-items-bottom">';
-            $html[] =           $fieldWizardHtml;
-            $html[] =       '</div>';
+            $html[] = '<div class="form-wizards-items-bottom">';
+            $html[] = $fieldWizardHtml;
+            $html[] = '</div>';
         }
-        $html[] =       '</div>';
-        $html[] =   '</div>';
+        $html[] = '</div>';
+        $html[] = '</div>';
         $html[] = '</div>';
 
         $html[] = '<div id="preview-content-animation">';
-        $html[] =   '<div class="preview-label" data-show-preview="false">'. LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') .'</div>';
-        $html[] =   '<div class="ce-preview" data-aos="'. $parameterArray['itemFormElValue']['0'] .'">';
-        $html[] =       '<span class="ce-preview__item"></span>';
-        $html[] =       '<span class="ce-preview__item"></span>';
-        $html[] =       '<span class="ce-preview__item"></span>';
-        $html[] =       '<span class="ce-preview__item ce-preview__item--xs"></span>';
-        $html[] =   '</div>';
+        $html[] = '<div class="preview-label" data-show-preview="false">' . LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') . '</div>';
+        $html[] = '<div class="ce-preview" data-aos="' . $parameterArray['itemFormElValue']['0'] . '">';
+        $html[] = '<span class="ce-preview__item"></span>';
+        $html[] = '<span class="ce-preview__item"></span>';
+        $html[] = '<span class="ce-preview__item"></span>';
+        $html[] = '<span class="ce-preview__item ce-preview__item--xs"></span>';
+        $html[] = '</div>';
         $html[] = '</div>';
 
         return [

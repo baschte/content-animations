@@ -3,6 +3,6 @@
 
 # support for bootstrap_package v9
 lib.contentElement {
-	layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/BootstrapPackage/v9/
-    variables < plugin.tx_content_animations.variables
+  layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/BootstrapPackage/v9/
+  variables < plugin.tx_content_animations.variables
 }
