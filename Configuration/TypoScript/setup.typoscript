@@ -12,7 +12,7 @@ plugin.tx_content_animations {
     }
 
     dataProcessing {
-        78911002 = Baschte\ContentAnimations\DataProcessing\AnimationsProcessor
+        78911002 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
     }
 }
 

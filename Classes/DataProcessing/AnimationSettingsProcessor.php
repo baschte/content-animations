@@ -20,18 +20,18 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 /**
  * DataProcessor to generate animation settings
  *
- * 10 = Baschte\ContentAnimations\DataProcessing\AnimationsProcessor
+ * 10 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
  *
  *
  * Advanced TypoScript configuration
  *
- * 10 = Baschte\ContentAnimations\DataProcessing\AnimationsProcessor
+ * 10 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
  * 10 {
  *   removeOptions = anchor-placement, once, mirror
  *   as = animations
  * }
  */
-class AnimationsProcessor implements DataProcessorInterface
+class AnimationSettingsProcessor implements DataProcessorInterface
 {
     const ANIMATION_PREFIX = 'data-aos';
     const DATA_PREFIX = 'tx_content_animations_';
