@@ -34,7 +34,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 class AnimationSettingsProcessor implements DataProcessorInterface
 {
     const ANIMATION_PREFIX = 'data-aos';
-    const DATA_PREFIX = 'tx_content_animations_';
+    const DATA_COLUMN_PREFIX = 'tx_content_animations_';
 
     /**
      * @var array
@@ -54,15 +54,15 @@ class AnimationSettingsProcessor implements DataProcessorInterface
      * @var array
      */
     protected $fallbackAosSettings = [
-        'aos-easing',
-        'aos-once',
-        'aos-mirror',
+        'easing',
+        'once',
+        'mirror',
     ];
 
     /**
      * @var array
      */
-    protected $boolAosSettings = [
+    protected $aosBooleanSettings = [
         'disable',
         'useClassNames',
         'disableMutationObserver',
@@ -92,35 +92,19 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         // generate complete settings as string
         $completeAnimationSettings = $this->generateAnimationAttributeSettingsFromAnimationsArray($animationSettingsArray);
 
-        // build the variable out of the "as" value given in processor settings
-        $variableName = $cObj->stdWrapValue('as', $processorConfiguration);
-        if (!empty($variableName)) {
-            $processedData[$variableName] = $completeAnimationSettings;
-        } else {
-            $processedData['animationSettings'] = $completeAnimationSettings;
-        }
+        // update $processedData with given processor settings
+        $this->setSettingsToProcessedData($cObj, $processorConfiguration, $processedData, $completeAnimationSettings);
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($processedData);
         return $processedData;
     }
 
     /**
-     * @param ContentObjectRenderer $cObj
-     * @param array $processorConfiguration
-     * @return array
-     */
-    protected function getOptionsToRemoveFromSettings($cObj, $processorConfiguration)
-    {
-        $optionsToRemove = preg_replace('/\s+/', '', $cObj->stdWrapValue('removeOptions', $processorConfiguration)) ?? '';
-        return explode(',', $optionsToRemove);
-    }
-
-    /**
      * @param array $array
-     * @param $path
+     * @param string $path
      * @param string $delimiter
      * @return array|string
      */
-    private static function getValueByPath(array $array, $path, $delimiter = '/')
+    private static function getValueByPath(array $array, string $path, string $delimiter = '/')
     {
         // Extract parts of the path
         if (is_string($path)) {
@@ -147,6 +131,17 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     }
 
     /**
+     * @param ContentObjectRenderer $cObj
+     * @param array $processorConfiguration
+     * @return array
+     */
+    protected function getOptionsToRemoveFromSettings(ContentObjectRenderer $cObj, array $processorConfiguration)
+    {
+        $optionsToRemove = preg_replace('/\s+/', '', $cObj->stdWrapValue('removeOptions', $processorConfiguration)) ?? '';
+        return explode(',', $optionsToRemove);
+    }
+
+    /**
      * @param array $dataObj
      * @param array $processedData
      * @return array
@@ -158,7 +153,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             // replace '-animation' to guarantee animation is set correct for aos
             $optionKey = str_replace('_', '-', $availableOption);
             $optionKey = str_replace('-animation', '', self::ANIMATION_PREFIX . '-' . $optionKey);
-            $value = self::getValueByPath($dataObj, self::DATA_PREFIX . $availableOption);
+            $value = self::getValueByPath($dataObj, self::DATA_COLUMN_PREFIX . $availableOption);
 
             // check if animation value is set => otherwise return nothing
             if ($availableOption === 'animation' && empty($value)) {
@@ -174,14 +169,14 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         // add default global settings to animationsArray if they're not set already
         // check if fallbackOptions already set => otherwise set them to default
         foreach ($this->fallbackAosSettings as $fallbackOption) {
-            if (!array_key_exists('data-' . $fallbackOption, $animationOptions) && isset($processedData[$fallbackOption])) {
-                $animationOptions['data-' . $fallbackOption] = $processedData[$fallbackOption];
+            if (!array_key_exists('data-aos-' . $fallbackOption, $animationOptions) && isset($processedData['aos-' . $fallbackOption])) {
+                $animationOptions['data-aos-' . $fallbackOption] = $processedData['aos-' . $fallbackOption];
             }
         }
 
         // check if values should be converted to bool values
         foreach ($animationOptions as $key => $value) {
-            if (in_array(str_replace('data-', '', $key), $this->boolAosSettings)) {
+            if (in_array(str_replace('data-', '', $key), $this->aosBooleanSettings)) {
                 $animationOptions[$key] = $value === 1 ? 'true' : 'false';
             }
         }
@@ -196,6 +191,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     private function generateAnimationAttributeSettingsFromAnimationsArray(array $animationSettingsArray)
     {
         $animationSettings = '';
+        // generate animation settings out of settingsArray
         foreach ($animationSettingsArray as $key => $value) {
             $animationSettings .= ' ' . $key . '="' . $value . '"';
         }
@@ -205,13 +201,29 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     /**
      * @param array $optionsToRemove
      */
-    private function removeOptionsFromAvailableSettings(array $optionsToRemove): void
+    private function removeOptionsFromAvailableSettings(array $optionsToRemove)
     {
         foreach ($optionsToRemove as $option) {
             if (!empty($option)) {
                 $this->availableAosSettings = ArrayUtility::removeArrayEntryByValue($this->availableAosSettings, $option);
-                $this->fallbackAosSettings = ArrayUtility::removeArrayEntryByValue($this->fallbackAosSettings, 'aos-' . $option);
+                $this->fallbackAosSettings = ArrayUtility::removeArrayEntryByValue($this->fallbackAosSettings, $option);
             }
+        }
+    }
+
+    /**
+     * @param ContentObjectRenderer $cObj
+     * @param array $processorConfiguration
+     * @param array $processedData
+     * @param string $completeAnimationSettings
+     */
+    private function setSettingsToProcessedData(ContentObjectRenderer $cObj, array $processorConfiguration, array &$processedData, string $completeAnimationSettings)
+    {
+        $variableName = $cObj->stdWrapValue('as', $processorConfiguration);
+        if (!empty($variableName)) {
+            $processedData[$variableName] = $completeAnimationSettings;
+        } else {
+            $processedData['animationSettings'] = $completeAnimationSettings;
         }
     }
 }

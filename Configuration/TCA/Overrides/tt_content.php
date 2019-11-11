@@ -126,6 +126,16 @@ $tempColumns = [
             'default' => 1,
         ],
     ],
+    'tx_content_animations_mirror' => [
+        'exclude' => true,
+        'label' => 'Mirror (trans)',
+        'description' => 'whether elements should animate out while scrolling past them',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'default' => 0,
+        ],
+    ],
     'tx_content_animations_easing' => [
         'exclude' => true,
         'label' => 'Easing (trans)',
@@ -166,12 +176,24 @@ $GLOBALS['TCA']['tt_content']['palettes']['tx_content_animations_animation'] = [
 
 // add new animation speed palette
 $GLOBALS['TCA']['tt_content']['palettes']['tx_content_animations_timing'] = [
-    'showitem' => 'tx_content_animations_duration,tx_content_animations_delay',
+    'showitem' => '
+        tx_content_animations_duration,
+        tx_content_animations_delay
+    ',
 ];
 
 // add new extended animations palette
 $GLOBALS['TCA']['tt_content']['palettes']['tx_content_animations_extended'] = [
-    'showitem' => 'tx_content_animations_once,--linebreak--,tx_content_animations_easing,--linebreak--,tx_content_animations_anchor_placement,--linebreak--,tx_content_animations_offset',
+    'showitem' => '
+        tx_content_animations_once,
+        tx_content_animations_mirror,
+        --linebreak--,
+        tx_content_animations_easing,
+        --linebreak--,
+        tx_content_animations_anchor_placement,
+        --linebreak--,
+        tx_content_animations_offset
+    ',
 ];
 
 // add all fields to tt_content
