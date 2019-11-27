@@ -94,7 +94,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
 
         // update $processedData with given processor settings
         $this->setSettingsToProcessedData($cObj, $processorConfiguration, $processedData, $completeAnimationSettings);
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($processedData);
+
         return $processedData;
     }
 
@@ -135,7 +135,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
      * @param array $processorConfiguration
      * @return array
      */
-    protected function getOptionsToRemoveFromSettings(ContentObjectRenderer $cObj, array $processorConfiguration)
+    private function getOptionsToRemoveFromSettings(ContentObjectRenderer $cObj, array $processorConfiguration)
     {
         $optionsToRemove = preg_replace('/\s+/', '', $cObj->stdWrapValue('removeOptions', $processorConfiguration)) ?? '';
         return explode(',', $optionsToRemove);

@@ -3,7 +3,11 @@
 
 # support for bootstrap_package v11
 lib.contentElement {
-  layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/BootstrapPackage/v11/
-  variables < plugin.tx_content_animations.variables
-  dataProcessing < plugin.tx_content_animations.dataProcessing
+    layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/BootstrapPackage/v11/
+    variables {
+        aos-easing < plugin.tx_content_animations.variables.aos-easing
+        aos-once < plugin.tx_content_animations.variables.aos-once
+        aos-mirror < plugin.tx_content_animations.variables.aos-mirror
+    }
+    dataProcessing.78911002 < plugin.tx_content_animations.dataProcessing.78911002
 }
