@@ -1,5 +1,7 @@
 <?php
 
+namespace Baschte\ContentAnimations\DataProcessing;
+
 /*
  *
  * This file is part of the "content_animations" Extension for TYPO3 CMS.
@@ -7,11 +9,9 @@
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 Sebastian Richter <info@baschte.de>
+ *  (c) 2020 Sebastian Richter <info@baschte.de>
  *
  */
-
-namespace Baschte\ContentAnimations\DataProcessing;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -28,7 +28,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  * 10 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
  * 10 {
  *   removeOptions = anchor-placement, once, mirror
- *   as = animations
+ *   as = animationSettings
  * }
  */
 class AnimationSettingsProcessor implements DataProcessorInterface

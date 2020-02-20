@@ -15,6 +15,10 @@
 				<source>Timing settings</source>
 			</trans-unit>
 
+			<trans-unit id="palette.extended-settings" xml:space="preserve">
+				<source>Extended animation settings</source>
+			</trans-unit>
+
 			<trans-unit id="label.animation" xml:space="preserve">
 				<source>Animation</source>
 			</trans-unit>
@@ -29,6 +33,30 @@
 
 			<trans-unit id="label.offset" xml:space="preserve">
 				<source>Offset in pixels</source>
+			</trans-unit>
+
+			<trans-unit id="label.easing" xml:space="preserve">
+				<source>Easing</source>
+			</trans-unit>
+
+			<trans-unit id="label.once" xml:space="preserve">
+				<source>Play animation once</source>
+			</trans-unit>
+
+			<trans-unit id="desc.once" xml:space="preserve">
+				<source>Whether animation should happen only once - while scrolling down</source>
+			</trans-unit>
+
+			<trans-unit id="label.mirror" xml:space="preserve">
+				<source>Mirror</source>
+			</trans-unit>
+
+			<trans-unit id="desc.mirror" xml:space="preserve">
+				<source>Animations animates out while scrolling past them</source>
+			</trans-unit>
+
+			<trans-unit id="label.anchor-placement" xml:space="preserve">
+				<source>Anchor placement</source>
 			</trans-unit>
 
 			<trans-unit id="item.no-animation" xml:space="preserve">

@@ -7,7 +7,7 @@
 Developer Corner
 ================
 
-Content Animations comes with an out of the box **bootstrap_package v10 v9 and v8**, **fluid_styled_content** and **higher_education_package v9** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
+Content Animations comes with an out of the box **bootstrap_package v11, v10, v9 and v8**, **fluid_styled_content** and **higher_education_package v9** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
 This extension extends the **Default Fluid Layout** for the necessary data-attributes to get the animation stuff working in the frontend.
 
 
@@ -42,11 +42,11 @@ Here is an example of what the rendered HTML should look like
 Extending
 =========
 
-If you use your own Layouts and want to support content_animations please make sure that the following snippet is included in the outer html tag of your content elements.
+If you use your own Layouts and want to support content_animations please make sure that the following snippet is included in the outer html tag of your content elements. This will add all the necessary attributes and settings to the html tag.
 
 .. code-block:: php
 
-   {f:if(condition: data.tx_content_animations_animation, then: ' data-aos="{data.tx_content_animations_animation}" data-aos-duration="{data.tx_content_animations_duration}" data-aos-delay="{data.tx_content_animations_delay}" data-aos-once="{f:if(condition: aos-once, then: \'true\', else: \'false\')}" data-aos-easing="{aos-easing}" data-aos-mirror="{f:if(condition: aos-mirror, then: \'true\', else: \'false\')}"')}
+   {f:if(condition: animationSettings, then: '{animationSettings -> f:format.raw()}')}
 
 
 LayoutRootPath

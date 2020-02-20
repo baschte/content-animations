@@ -27,7 +27,7 @@ if (!$extensionConfiguration['disableAddAnimationsTab'] && $extensionConfigurati
 		tx_content_animations_animation,
 	--palette--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:palette.timing-settings;
 		tx_content_animations_timing,
-	--palette--;Extended animation settings (trans);
+	--palette--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:palette.extended-settings;
 		tx_content_animations_extended
 	'
     );

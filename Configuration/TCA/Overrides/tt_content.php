@@ -5,6 +5,8 @@ if (!defined('TYPO3_MODE')) {
 
 $tempColumns = [
     'tx_content_animations_animation' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.animation',
         'config' => [
             'items' => [
                 ['LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:item.no-animation', ''],
@@ -44,10 +46,10 @@ $tempColumns = [
             'type' => 'select',
             'size' => 1,
         ],
-        'exclude' => '1',
-        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.animation',
     ],
     'tx_content_animations_duration' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.duration',
         'config' => [
             'type' => 'input',
             'size' => 5,
@@ -62,10 +64,10 @@ $tempColumns = [
                 'width' => 200,
             ],
         ],
-        'exclude' => '1',
-        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.duration',
     ],
     'tx_content_animations_delay' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.delay',
         'config' => [
             'type' => 'input',
             'size' => 5,
@@ -80,8 +82,6 @@ $tempColumns = [
                 'width' => 200,
             ],
         ],
-        'exclude' => '1',
-        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.delay',
     ],
 
     'tx_content_animations_offset' => [
@@ -97,7 +97,7 @@ $tempColumns = [
 
     'tx_content_animations_anchor_placement' => [
         'exclude' => true,
-        'label' => 'Anchor placement (trans)',
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.anchor-placement',
         'config' => [
             'type' => 'select',
             'renderType' => 'selectSingle',
@@ -118,8 +118,8 @@ $tempColumns = [
     ],
     'tx_content_animations_once' => [
         'exclude' => true,
-        'label' => 'Once (trans)',
-        'description' => 'whether animation should happen only once - while scrolling down',
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.once',
+        'description' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:desc.once',
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
@@ -128,8 +128,8 @@ $tempColumns = [
     ],
     'tx_content_animations_mirror' => [
         'exclude' => true,
-        'label' => 'Mirror (trans)',
-        'description' => 'whether elements should animate out while scrolling past them',
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.mirror',
+        'description' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:desc.mirror',
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
@@ -138,7 +138,7 @@ $tempColumns = [
     ],
     'tx_content_animations_easing' => [
         'exclude' => true,
-        'label' => 'Easing (trans)',
+        'label' => 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.easing',
         'config' => [
             'type' => 'select',
             'renderType' => 'selectSingle',
