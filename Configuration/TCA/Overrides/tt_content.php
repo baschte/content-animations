@@ -196,5 +196,11 @@ $GLOBALS['TCA']['tt_content']['palettes']['tx_content_animations_extended'] = [
     ',
 ];
 
+// check if TYPO3 version is lower than v9.* => reformat or delete some TCA definitions
+if(version_compare(TYPO3_version, '9.0.0', '<=')) {
+    unset($tempColumns['tx_content_animations_once']['config']['renderType']);
+    unset($tempColumns['tx_content_animations_mirror']['config']['renderType']);
+}
+
 // add all fields to tt_content
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
