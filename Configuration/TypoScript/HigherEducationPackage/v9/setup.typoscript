@@ -3,8 +3,13 @@
 
 # support for higher_education_package v9
 plugin.tx_highereducationpackage {
-	contentelements {
-		layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/v9/
-        variables < plugin.tx_content_animations.variables
-	}
+    contentelements {
+        layoutRootPaths.100 = EXT:content_animations/Resources/Private/Layouts/HigherEducationPackage/v9/
+        variables {
+            aos-easing < plugin.tx_content_animations.variables.aos-easing
+            aos-once < plugin.tx_content_animations.variables.aos-once
+            aos-mirror < plugin.tx_content_animations.variables.aos-mirror
+        }
+        dataProcessing.78911002 < plugin.tx_content_animations.dataProcessing.78911002
+    }
 }

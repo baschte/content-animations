@@ -12,6 +12,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+2.0.0 - 2020-02-20
+===================
+
+Features
+^^^^^^^^
+- [!!!][FEATURE] introducing `AnimationSettingsProcessor` to get and render given animation settings into the html
+- [FEATURE] updating to latest AOS library
+- [FEATURE] possibility to enable advanced animation settings
+- [FEATURE] global switch to disable the animation tab for all CTypes
+
+
 1.2.1 - 2019-07-14
 ==================
 

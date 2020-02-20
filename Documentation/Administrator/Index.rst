@@ -14,10 +14,12 @@ Settings
 
 +------------------------------+---------------+-------------------------------------------------------------------+---------------+
 | Feature                      | Data type     | Description                                                       | Default       |
-+==============================+===============+===================================================================+===============+
++==============================+===============+========================================================================+===============+
 | hideFooterAnimationLabel     | boolean       | Hide the Animation Footer Label                                   | false         |
 +------------------------------+---------------+-------------------------------------------------------------------+---------------+
 | disableAddAnimationsTab      | boolean       | Disable the automatic append of the Animations tab to all CTypes  | false         |
++------------------------------+---------------+-------------------------------------------------------------------+---------------+
+| extendedAnimationSettings    | boolean       | Activate extended animation settings (for advanced users only)    | false         |
 +------------------------------+---------------+-------------------------------------------------------------------+---------------+
 
 Animation Footer Label
@@ -38,3 +40,13 @@ You can disable the automatic appending of the Animation Tab to all CTypes. The 
 .. figure:: ../Images/Settings/animation-tab.png
   :width: 330px
   :alt: Animation Tab
+
+
+Advanced Animation Settings
+============================
+
+You can enable advanced animation settings for all CTypes (offset, anchorPlacement etc...). These settings are disabled by default.
+
+.. figure:: ../Images/Settings/extended-settings.png
+  :width: 860px
+  :alt: Advanced Animation Settings

@@ -18,6 +18,11 @@
 				<target>Timing-Einstellungen</target>
 			</trans-unit>
 
+			<trans-unit id="palette.extended-settings" xml:space="preserve">
+				<source>Extended animation settings</source>
+				<target>Erweiterte Animationseinstellungen</target>
+			</trans-unit>
+
 			<trans-unit id="label.animation" xml:space="preserve">
 				<source>Animation</source>
 				<target>Animation</target>
@@ -31,6 +36,41 @@
 			<trans-unit id="label.delay" xml:space="preserve">
 				<source>Delay in milliseconds</source>
 				<target>Verzögerung in Millisekunden</target>
+			</trans-unit>
+
+			<trans-unit id="label.offset" xml:space="preserve">
+				<source>Offset in pixels</source>
+				<target>Versatz in Pixel</target>
+			</trans-unit>
+
+			<trans-unit id="label.easing" xml:space="preserve">
+				<source>Easing</source>
+				<target>Easing</target>
+			</trans-unit>
+
+			<trans-unit id="label.once" xml:space="preserve">
+				<source>Play animation once</source>
+				<target>Animation einmalig abspielen</target>
+			</trans-unit>
+
+			<trans-unit id="desc.once" xml:space="preserve">
+				<source>Whether animation should happen only once - while scrolling down</source>
+				<target>Animation wird nur einmalig, beim herunterscrollen, abgespielt</target>
+			</trans-unit>
+
+			<trans-unit id="label.mirror" xml:space="preserve">
+				<source>Mirror</source>
+				<target>Spiegeln</target>
+			</trans-unit>
+
+			<trans-unit id="desc.mirror" xml:space="preserve">
+				<source>Animations animates out while scrolling past them</source>
+				<target>Animation wird beim herunterscrollen gespiegelt ausgeblendet</target>
+			</trans-unit>
+
+			<trans-unit id="label.anchor-placement" xml:space="preserve">
+				<source>Anchor placement</source>
+				<target>Ankerplatzierung</target>
 			</trans-unit>
 
 			<trans-unit id="item.no-animation" xml:space="preserve">

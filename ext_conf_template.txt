@@ -7,3 +7,6 @@ hideFooterAnimationLabel = 0
 
 # cat=Features; type=boolean; label=Disable the automatic append of the Animations tab to all CTypes
 disableAddAnimationsTab = 0
+
+# cat=Features; type=boolean; label=Extended animation settings (offset, anchorPlacement etc...)
+extendedAnimationSettings = 0

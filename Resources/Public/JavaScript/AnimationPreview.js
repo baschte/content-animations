@@ -18,8 +18,8 @@ define([ 'jquery' ], function ($) {
      * @private
      */
     AnimationPreview.changeAnimation = function (duration, delay, removeAnimation) {
-        if(removeAnimation) {
-            AnimationPreview.$previewElement.removeClass(AnimationPreview.defaultClasses).css({'transition-duration': '0s'});
+        if (removeAnimation) {
+            AnimationPreview.$previewElement.removeClass(AnimationPreview.defaultClasses).css({ 'transition-duration': '0s' });
         } else {
             AnimationPreview.$previewElement.removeAttr('style').addClass(AnimationPreview.defaultClasses);
         }
@@ -32,7 +32,7 @@ define([ 'jquery' ], function ($) {
      * @private
      */
     AnimationPreview.restartAnimation = function () {
-        AnimationPreview.$previewElement.removeClass(AnimationPreview.defaultClasses).css({'transition-duration': '0s'});
+        AnimationPreview.$previewElement.removeClass(AnimationPreview.defaultClasses).css({ 'transition-duration': '0s' });
         AnimationPreview.defaultPreviewDuration = 250;
         AnimationPreview.defaultPreviewDelay = 0;
 
@@ -45,10 +45,10 @@ define([ 'jquery' ], function ($) {
      * @private
      */
     AnimationPreview.playAnimationLoop = function () {
-        AnimationPreview.defaultInterval = setInterval(function() {
-            if(AnimationPreview.$previewElement.hasClass(AnimationPreview.defaultClasses)) {
+        AnimationPreview.defaultInterval = setInterval(function () {
+            if (AnimationPreview.$previewElement.hasClass(AnimationPreview.defaultClasses)) {
                 // remove animationPreview
-                AnimationPreview.changeAnimation(250,0,true);
+                AnimationPreview.changeAnimation(250, 0, true);
             } else {
                 // add animationPreview
                 AnimationPreview.changeAnimation(parseInt(AnimationPreview.$durationValueInputField.val()), 1000, false);
@@ -65,7 +65,7 @@ define([ 'jquery' ], function ($) {
      * @param attrValueObject
      */
     AnimationPreview.setAttr = function (attrValueObject) {
-        if(!attrValueObject) return;
+        if (!attrValueObject) return;
         AnimationPreview.$previewElement.attr(attrValueObject);
     };
 
@@ -75,7 +75,7 @@ define([ 'jquery' ], function ($) {
      * @param event
      */
     AnimationPreview.handleAnimationChange = function (event) {
-        if(!event) return;
+        if (!event) return;
         AnimationPreview.$previewLabel.attr('data-show-preview', 'true');
         AnimationPreview.setAttr({ 'data-aos': event.target.value });
         AnimationPreview.restartAnimation();
@@ -87,7 +87,7 @@ define([ 'jquery' ], function ($) {
      * @param event
      */
     AnimationPreview.handleDurationChange = function (event) {
-        if(!event) return;
+        if (!event) return;
         AnimationPreview.defaultPreviewDuration = parseInt(event.target.value);
         AnimationPreview.setAttr({ 'data-aos-duration': AnimationPreview.defaultPreviewDuration });
         AnimationPreview.restartAnimation();
