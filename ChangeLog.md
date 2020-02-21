@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.0.1 - 2020-02-21
+### FEATURE
+- add typoscript include for "basic configuration" without fluid layout overwrite for custom packages
+
+## 2.0.0 - 2020-02-20
+### FEATURE
+- introducing `AnimationSettingsProcessor` to get and render given animation settings into the html
+- updating to latest AOS library
+- possibility to enable advanced animation settings
+- global switch to disable the animation tab for all CTypes
+
 ## 1.2.0 - 2019-04-11
 ### FEATURE
 - adding a new and simple fade animation
