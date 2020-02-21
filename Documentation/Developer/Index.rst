@@ -42,7 +42,7 @@ Here is an example of what the rendered HTML should look like
 Extending
 =========
 
-If you use your own Layouts and want to support content_animations please make sure that the following snippet is included in the outer html tag of your content elements. This will add all the necessary attributes and settings to the html tag.
+If you use your own Layouts and want to support content_animations please make sure that the `Content Animations: Basic Configuration` is included in your TS-Template and that the snippet is included in the outer html tag of your content elements. This will add all the necessary attributes and settings to the html tag.
 
 .. code-block:: php
 
@@ -52,7 +52,7 @@ If you use your own Layouts and want to support content_animations please make s
 LayoutRootPath
 ==============
 
-Content Animations extends the layoutRootPaths with the key **100**.
+Content Animations extends the layoutRootPaths with the key **100** in all typoscript includes except `Content Animations: Basic Configuration`.
 
 If you don't want that please overwrite or delete it via ``lib.contentElement.layoutRootPaths.100 >`` in your template
 
