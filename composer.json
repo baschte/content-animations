@@ -2,7 +2,7 @@
 	"name": "baschte/content-animations",
 	"type": "typo3-cms-extension",
 	"description": "TYPO3 CMS extension to have some fun and animate your content elements",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"license": [
 		"GPL-3.0-or-later"
 	],
@@ -13,7 +13,7 @@
 		}
 	],
 	"require": {
-		"typo3/cms-core": "^8.7 || ^9.5"
+		"typo3/cms-core": "^8.7 || ^9.5 || ^10.4"
 	},
 	"autoload": {
 		"psr-4": {
