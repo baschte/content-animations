@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 2.3.0 - 2021-10-13
 ===================
 
+Features
+^^^^^^^^
+- [FEATURE] TYPO3 11 LTS support
+
 Bugfixes
 ^^^^^^^^
 - [BUGFIX] fixing inline js include
