@@ -8,11 +8,13 @@ namespace Baschte\ContentAnimations\ContentObject;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 Sebastian Richter <info@baschte.de>
+ *  (c) 2021 Sebastian Richter <info@baschte.de>
  *
  */
 
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\ContentObject\AbstractContentObject;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -30,18 +32,22 @@ class FileContentContentObject extends AbstractContentObject
      */
     public function render($conf = [])
     {
+        $typo3Version = intval(explode(".", VersionNumberUtility::getCurrentTypo3Version())[0]);
         $fileContent = '';
         $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
         try {
+            // check if TYPO3 version 11 or higher
+            if($typo3Version >= 11) {
+                $filePath= Environment::getPublicPath() . PathUtility::getPublicResourceWebPath($file);
             // check if TYPO3 version 9 or higher
-            if(explode(".", VersionNumberUtility::getCurrentTypo3Version())[0] > 8) {
-                $file = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)->sanitize($file);
+            } else if($typo3Version > 8) {
+                $filePath = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)->sanitize($file);
             } else {
                 // fallback for TYPO3 version 8 and below
-                $file = $this->getTypoScriptFrontendController()->tmpl->getFileName($file);
+                $filePath = $this->getTypoScriptFrontendController()->tmpl->getFileName($file);
             }
-            if (file_exists($file)) {
-                $fileContent = file_get_contents($file);
+            if (file_exists($filePath)) {
+                $fileContent = file_get_contents($filePath);
             }
         } catch (\TYPO3\CMS\Core\Resource\Exception $e) {
             // do nothing
