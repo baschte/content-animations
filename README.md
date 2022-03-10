@@ -17,3 +17,6 @@ Include the static TypoScript for `Content Animations: bootstrap_package v8, v9,
 
 ### Thanks
 to **Michał Sajnóg** for his amazing [AOS](http://michalsnik.github.io/aos/) library which is included in `content_animations`.
+
+## More Informations
+See the [official documentation](https://docs.typo3.org/p/baschte/content-animations/main/en-us/) for more details how to implement content_animations
