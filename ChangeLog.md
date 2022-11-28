@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.3 - 2022-11-28
+### TASK
+- [TASK] add some company informations to extension
+
 ## 2.3.2 - 2022-01-13
 ### BUGFIX
 - [BUGFIX] PHP 8.1 compatibility
