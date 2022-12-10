@@ -1,11 +1,9 @@
 <?php
 
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
+defined('TYPO3') or die('Access denied.');
 
 // get extensionConfiguration for 'content_animations'
-if (version_compare(TYPO3_version, '9.0.0', '<=')) {
+if (version_compare((new TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion(), '9.0.0', '<=')) {
     $extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['content_animations']);
 } else {
     $extensionManagementUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class);

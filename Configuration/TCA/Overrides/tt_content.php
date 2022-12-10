@@ -1,7 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
+defined('TYPO3') or die('Access denied.');
 
 $tempColumns = [
     'tx_content_animations_animation' => [
@@ -197,7 +195,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['tx_content_animations_extended'] = [
 ];
 
 // check if TYPO3 version is lower than v9.* => reformat or delete some TCA definitions
-if(version_compare(TYPO3_version, '9.0.0', '<=')) {
+if(version_compare((new TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion(), '9.0.0', '<=')) {
     unset($tempColumns['tx_content_animations_once']['config']['renderType']);
     unset($tempColumns['tx_content_animations_mirror']['config']['renderType']);
 }
