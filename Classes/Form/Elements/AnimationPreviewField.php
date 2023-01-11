@@ -17,6 +17,7 @@ use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Form\NodeInterface;
 use TYPO3\CMS\Backend\Form\Utility\FormEngineUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
@@ -190,13 +191,13 @@ class AnimationPreviewField implements NodeInterface
 
         $html[] = '<div id="preview-content-animation">';
         $html[] = '<div class="preview-label" data-show-preview="false">' . LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') . '</div>';
-        
+
         if (is_array($parameterArray['itemFormElValue']) && !empty($parameterArray['itemFormElValue'])) {
             $html[] = '<div class="ce-preview" data-aos="' . $parameterArray['itemFormElValue']['0'] . '">';
         } else {
             $html[] = '<div class="ce-preview" data-aos>';
         }
-        
+
         $html[] = '<span class="ce-preview__item"></span>';
         $html[] = '<span class="ce-preview__item"></span>';
         $html[] = '<span class="ce-preview__item"></span>';
@@ -211,8 +212,8 @@ class AnimationPreviewField implements NodeInterface
                 'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css',
                 'EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css'
             ],
-            'requireJsModules' => [
-                'TYPO3/CMS/ContentAnimations/AnimationPreview'
+            'javaScriptModules' => [
+                JavaScriptModuleInstruction::create('@baschte/content-animations/animation-preview.js')
             ],
         ];
     }
