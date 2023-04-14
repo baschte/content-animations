@@ -1,16 +1,12 @@
 <?php
 
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE') && !defined('TYPO3')) {
     die ('Access denied.');
 }
 
 // get extensionConfiguration for 'content_animations'
-if (version_compare(TYPO3_version, '9.0.0', '<=')) {
-    $extensionConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['content_animations']);
-} else {
-    $extensionManagementUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class);
-    $extensionConfiguration = $extensionManagementUtility->get('content_animations');
-}
+$extensionManagementUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class);
+$extensionConfiguration = $extensionManagementUtility->get('content_animations');
 
 // add animation tab to all CTypes if not disabled via extension settings
 if (!$extensionConfiguration['disableAddAnimationsTab'] && !$extensionConfiguration['extendedAnimationSettings']) {

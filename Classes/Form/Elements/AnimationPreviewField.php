@@ -17,6 +17,8 @@ use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Form\NodeInterface;
 use TYPO3\CMS\Backend\Form\Utility\FormEngineUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
@@ -92,26 +94,26 @@ class AnimationPreviewField implements NodeInterface
         }
 
         foreach ($selectItems as $item) {
-            if ($item[1] === '--div--') {
+            if (($item['value'] ?? $item[1]) === '--div--') {
                 // IS OPTGROUP
                 if ($selectItemCounter !== 0) {
                     $selectItemGroupCount++;
                 }
                 $selectItemGroups[$selectItemGroupCount]['header'] = [
-                    'title' => $item[0],
+                    'title' => $item['label'] ?? $item[0],
                 ];
             } else {
                 // IS ITEM
-                $icon = !empty($item[2]) ? FormEngineUtility::getIconHtml($item[2], $item[0], $item[0]) : '';
-                $selected = $selectedValue === (string)$item[1];
+                $icon = !empty($item['icon'] ?? $item[2] ?? null) ? FormEngineUtility::getIconHtml($item['icon'] ?? $item[2], $item['label'] ?? $item[0], $item['label'] ?? $item[0]) : '';
+                $selected = $selectedValue === (string)($item['value'] ?? $item[1]);
 
                 if ($selected) {
                     $selectedIcon = $icon;
                 }
 
                 $selectItemGroups[$selectItemGroupCount]['items'][] = [
-                    'title' => $this->appendValueToLabelInDebugMode($item[0], $item[1]),
-                    'value' => $item[1],
+                    'title' => $this->appendValueToLabelInDebugMode($item['label'] ?? $item[0], $item['value'] ?? $item[1]),
+                    'value' => $item['value'] ?? $item[1],
                     'icon' => $icon,
                     'selected' => $selected,
                 ];
@@ -121,7 +123,7 @@ class AnimationPreviewField implements NodeInterface
 
         // Fallback icon
         // @todo: assign a special icon for non matching values?
-        if (!$selectedIcon && $selectItemGroups[0]['items'][0]['icon']) {
+        if (!$selectedIcon && isset($selectItemGroups[0]['items'][0]['icon'])) {
             $selectedIcon = $selectItemGroups[0]['items'][0]['icon'];
         }
 
@@ -190,13 +192,13 @@ class AnimationPreviewField implements NodeInterface
 
         $html[] = '<div id="preview-content-animation">';
         $html[] = '<div class="preview-label" data-show-preview="false">' . LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') . '</div>';
-        
+
         if (is_array($parameterArray['itemFormElValue']) && !empty($parameterArray['itemFormElValue'])) {
             $html[] = '<div class="ce-preview" data-aos="' . $parameterArray['itemFormElValue']['0'] . '">';
         } else {
             $html[] = '<div class="ce-preview" data-aos>';
         }
-        
+
         $html[] = '<span class="ce-preview__item"></span>';
         $html[] = '<span class="ce-preview__item"></span>';
         $html[] = '<span class="ce-preview__item"></span>';
@@ -204,17 +206,25 @@ class AnimationPreviewField implements NodeInterface
         $html[] = '</div>';
         $html[] = '</div>';
 
-        return [
+        $result = [
             'html' => implode(LF, $html),
             'additionalInlineLanguageLabelFiles' => [],
             'stylesheetFiles' => [
                 'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css',
                 'EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css'
             ],
-            'requireJsModules' => [
-                'TYPO3/CMS/ContentAnimations/AnimationPreview'
-            ],
         ];
+
+        if ((new Typo3Version())->getMajorVersion() === 12) {
+            $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
+                '@baschde/content-animations/preview.js',
+            );
+        } else {
+            $result['requireJsModules'] = [
+                'TYPO3/CMS/ContentAnimations/AnimationPreview'
+            ];
+        }
+        return $result;
     }
 
     /**
