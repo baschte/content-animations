@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\ContentObject\AbstractContentObject;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Contains FILECONTENT class object.
@@ -40,11 +39,8 @@ class FileContentContentObject extends AbstractContentObject
             if($typo3Version >= 11) {
                 $filePath= Environment::getPublicPath() . PathUtility::getPublicResourceWebPath($file);
             // check if TYPO3 version 9 or higher
-            } else if($typo3Version > 8) {
-                $filePath = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)->sanitize($file);
             } else {
-                // fallback for TYPO3 version 8 and below
-                $filePath = $this->getTypoScriptFrontendController()->tmpl->getFileName($file);
+                $filePath = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)->sanitize($file);
             }
             if (file_exists($filePath)) {
                 $fileContent = file_get_contents($filePath);
@@ -53,13 +49,5 @@ class FileContentContentObject extends AbstractContentObject
             // do nothing
         }
         return $fileContent;
-    }
-
-    /**
-     * @return TypoScriptFrontendController
-     */
-    protected function getTypoScriptFrontendController()
-    {
-        return $GLOBALS['TSFE'];
     }
 }

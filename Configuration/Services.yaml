@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Baschte\ContentAnimations\:
+    resource: '../Classes/*'
+
+  Baschte\ContentAnimations\ContentObject\FileContentContentObject:
+    tags:
+      - name: frontend.contentobject
+        identifier: 'FILECONTENT'
