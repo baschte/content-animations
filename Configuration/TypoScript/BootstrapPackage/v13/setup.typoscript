@@ -1,0 +1,59 @@
+# import default setup for content_animations
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/setup.typoscript">
+
+# support for bootstrap_package v13
+lib.contentElement {
+    variables {
+        aos-easing < plugin.tx_content_animations.variables.aos-easing
+        aos-once < plugin.tx_content_animations.variables.aos-once
+        aos-mirror < plugin.tx_content_animations.variables.aos-mirror
+    }
+    dataProcessing {
+        78911002 < plugin.tx_content_animations.dataProcessing.78911002
+        1682424577.data {
+            data-aos = TEXT
+            data-aos {
+                field = tx_content_animations_animation
+            }
+            data-aos-duration = TEXT
+            data-aos-duration {
+                field = tx_content_animations_duration
+            }
+            data-aos-offset = TEXT
+            data-aos-offset {
+                field = tx_content_animations_offset
+            }
+            data-aos-delay = TEXT
+            data-aos-delay {
+                field = tx_content_animations_delay
+            }
+            data-aos-easing = TEXT
+            data-aos-easing {
+                field = tx_content_animations_easing
+                ifEmpty = {$plugin.tx_content_animations.aos-easing}
+            }
+            data-aos-mirror = TEXT
+            data-aos-mirror {
+                field = tx_content_animations_mirror
+                replacement.10 {
+                  search = 1
+                  replace = true
+                }
+                ifEmpty = false
+            }
+            data-aos-once = TEXT
+            data-aos-once {
+                field = tx_content_animations_once
+                replacement.10 {
+                  search = 1
+                  replace = true
+                }
+                ifEmpty = false
+            }
+            data-aos-anchor-placement = TEXT
+            data-aos-anchor-placement {
+                field = tx_content_animations_anchor_placement
+            }
+        }
+    }
+}

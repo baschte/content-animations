@@ -20,12 +20,12 @@ plugin.tx_content_animations {
 page {
     cssInline {
         161113 = FILECONTENT
-        161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css
+        161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.css
     }
 
     jsFooterInline {
         161113 = FILECONTENT
-        161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos-3.0.0-beta-6.min.js
+        161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.4.2.0.min.js
 
         161114 = TEXT
         161114.value = AOS.init();

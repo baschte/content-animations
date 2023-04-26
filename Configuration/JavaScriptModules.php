@@ -8,6 +8,6 @@ return [
         'backend.form',
     ],
     'imports' => [
-        '@baschde/content-animations/preview.js' => 'EXT:content_animations/Resources/Public/JavaScript/preview.js',
+        '@baschte/content-animations/preview.js' => 'EXT:content_animations/Resources/Public/JavaScript/preview.js',
     ],
 ];

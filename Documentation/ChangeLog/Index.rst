@@ -12,6 +12,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+2.4.0 - 2023-04-26
+===================
+
+Features
+^^^^^^^^
+- [TASK] Add TYPO3 v12 LTS support and remove support below TYPO3 v10 - **(Special thanks to Benni Mack)**
+- [TASK] updating abandoned version of aos to forked and updated simple-aos library
+
+Breakings
+^^^^^^^^^
+
+- [!!!][TASK] removed support for TYPO3 v8 and v9
+- [!!!][TASK] removed support for Higher Education Package v10
+
 2.3.2 - 2022-01-13
 ===================
 

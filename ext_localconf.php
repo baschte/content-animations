@@ -26,4 +26,5 @@ $extensionConfiguration = $extensionManagementUtility->get('content_animations')
 // register PageLayoutViewAnimationFooterPreview to tt_content_drawFooter hook if this feature is active
 if (empty($extensionConfiguration['hideFooterAnimationLabel']) || !$extensionConfiguration['hideFooterAnimationLabel']) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawFooter'][] = \Baschte\ContentAnimations\Hooks\PageLayoutView\PageLayoutViewAnimationFooterPreview::class;
+    TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('templates.typo3/cms-backend.partialsRootPaths = baschte/content-animations:Resources/Private/TemplateOverrides/typo3/cms-backend');
 }

@@ -122,7 +122,6 @@ class AnimationPreviewField implements NodeInterface
         }
 
         // Fallback icon
-        // @todo: assign a special icon for non matching values?
         if (!$selectedIcon && isset($selectItemGroups[0]['items'][0]['icon'])) {
             $selectedIcon = $selectItemGroups[0]['items'][0]['icon'];
         }
@@ -211,13 +210,13 @@ class AnimationPreviewField implements NodeInterface
             'additionalInlineLanguageLabelFiles' => [],
             'stylesheetFiles' => [
                 'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css',
-                'EXT:content_animations/Resources/Public/JavaScript/Vendor/AOS/aos.css'
+                'EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.css'
             ],
         ];
 
         if ((new Typo3Version())->getMajorVersion() === 12) {
             $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
-                '@baschde/content-animations/preview.js',
+                '@baschte/content-animations/preview.js',
             );
         } else {
             $result['requireJsModules'] = [

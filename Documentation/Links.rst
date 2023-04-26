@@ -23,7 +23,7 @@ Links
 
 Thanks
 ------
-to **Michał Sajnóg** for his amazing **AOS** library which is included in ``content_animations``.
+to **Michał Sajnóg** for his amazing **AOS** library and **Benjamin Ammann** for the updated version which is now included in ``content_animations``.
 
 :GitHub:
-   https://github.com/michalsnik/aos
+   https://github.com/ammannbe/simple-aos
