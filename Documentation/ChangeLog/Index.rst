@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Features
 ^^^^^^^^
 - [TASK] Add TYPO3 v12 LTS support and remove support below TYPO3 v10 - **(Special thanks to Benni Mack)**
-- [TASK] updating abandoned version of aos to forked and updated simple-aos library
+- [TASK] switching outdated version of aos to forked and maintained simple-aos library
 
 Breakings
 ^^^^^^^^^
