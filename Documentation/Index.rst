@@ -28,7 +28,7 @@ Content Animations
       animations,scroll,effects,content,fx,aos,animate,fluid,styled,higher,eduction,package
 
    :Copyright:
-      2019
+      2023
 
    :Author:
       Sebastian Richter

@@ -7,7 +7,7 @@
 Developer Corner
 ================
 
-Content Animations comes with an out of the box **bootstrap_package v13, v12 and v11** and **fluid_styled_content** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
+Content Animations comes with an out of the box **bootstrap_package v14, v13, v12 and v11** and **fluid_styled_content** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
 This extension extends the **Default Fluid Layout** for the necessary data-attributes to get the animation stuff working in the frontend.
 
 
