@@ -216,7 +216,7 @@ class AnimationPreviewField implements NodeInterface
 
         if ((new Typo3Version())->getMajorVersion() === 12) {
             $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
-                '@baschte/content-animations/preview.js',
+                '@baschte/content-animations/preview.js'
             );
         } else {
             $result['requireJsModules'] = [
