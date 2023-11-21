@@ -4,6 +4,9 @@ if (!defined('TYPO3_MODE') && !defined('TYPO3')) {
     die ('Access denied.');
 }
 
+// get typo3 version
+$typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+
 // get extensionConfiguration for 'content_animations'
 $extensionManagementUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class);
 $extensionConfiguration = $extensionManagementUtility->get('content_animations');
@@ -32,4 +35,16 @@ if (!$extensionConfiguration['disableAddAnimationsTab'] && $extensionConfigurati
 		tx_content_animations_extended
 	'
     );
+}
+
+// add own footer partial to containerConfiguration if TYPO3 > v11 and ext: container is installed and used
+if ($typo3Version->getMajorVersion() > 11) {
+    if (empty($extensionConfiguration['hideFooterAnimationLabel']) || !$extensionConfiguration['hideFooterAnimationLabel']) {
+        $containerConfiguration = &$GLOBALS['TCA']['tt_content']['containerConfiguration'] ?? null;
+        if ($containerConfiguration) {
+            foreach (array_keys($containerConfiguration) as $cType) {
+                $containerConfiguration[$cType]['gridPartialPaths'][] = 'EXT:content_animations/Resources/Private/TemplateOverrides/typo3/cms-backend/Partials';
+            }
+        }
+    }
 }
