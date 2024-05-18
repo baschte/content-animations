@@ -14,7 +14,6 @@ namespace Baschte\ContentAnimations\Form\Elements;
  */
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
-use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Form\Utility\FormEngineUtility;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
@@ -65,24 +64,11 @@ class AnimationPreviewField extends AbstractFormElement
     ];
 
     /**
-     * All nodes get an instance of the NodeFactory and the main data array
+     * This will render a checkbox or an array of checkboxes
      *
-     * @param NodeFactory $nodeFactory
-     * @param array $data
+     * @return array As defined in initializeResultArray() of AbstractNode
      */
-    public function __construct(NodeFactory $nodeFactory, array $data)
-    {
-        $this->data = $data;
-        $this->nodeFactory = $nodeFactory;
-    }
-
-    /**
-     * Main render method
-     *
-     * @return array
-     * @throws \TYPO3\CMS\Backend\Form\Exception
-     */
-    public function render()
+    public function render(): array
     {
         $parameterArray = $this->data['parameterArray'];
         $config = $parameterArray['fieldConf']['config'];
@@ -237,7 +223,7 @@ class AnimationPreviewField extends AbstractFormElement
             ],
         ];
 
-        if ((new Typo3Version())->getMajorVersion() === 12) {
+        if ((new Typo3Version())->getMajorVersion() >= 12) {
             $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
                 '@baschte/content-animations/preview.js'
             );
