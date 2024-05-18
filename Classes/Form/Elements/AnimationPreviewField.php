@@ -13,10 +13,9 @@ namespace Baschte\ContentAnimations\Form\Elements;
  *
  */
 
+use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Backend\Form\NodeFactory;
-use TYPO3\CMS\Backend\Form\NodeInterface;
 use TYPO3\CMS\Backend\Form\Utility\FormEngineUtility;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
@@ -29,20 +28,41 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  *
  * @package Baschte\ContentAnimations\Form\Elements
  */
-class AnimationPreviewField implements NodeInterface
+class AnimationPreviewField extends AbstractFormElement
 {
-    /** @var array $data */
-    protected $data;
-
-    /** @var NodeFactory $nodeFactory */
-    protected $nodeFactory;
-
     /**
      * Default field information enabled for this element.
      *
      * @var array
      */
-    protected $defaultFieldInformation = [];
+    protected $defaultFieldInformation = [
+        'tcaDescription' => [
+            'renderType' => 'tcaDescription',
+        ],
+    ];
+
+    /**
+     * Default field wizards enabled for this element.
+     *
+     * @var array
+     */
+    protected $defaultFieldWizard = [
+        'localizationStateSelector' => [
+            'renderType' => 'localizationStateSelector',
+        ],
+        'otherLanguageContent' => [
+            'renderType' => 'otherLanguageContent',
+            'after' => [
+                'localizationStateSelector',
+            ],
+        ],
+        'defaultLanguageDifferences' => [
+            'renderType' => 'defaultLanguageDifferences',
+            'after' => [
+                'otherLanguageContent',
+            ],
+        ],
+    ];
 
     /**
      * All nodes get an instance of the NodeFactory and the main data array
@@ -161,6 +181,9 @@ class AnimationPreviewField implements NodeInterface
             $selectAttributes['disabled'] = 'disabled';
         }
 
+        $fieldWizardResult = $this->renderFieldWizard();
+        $fieldWizardHtml = $fieldWizardResult['html'];
+
         $html = [];
         $html[] = '<div class="formengine-field-item t3js-formengine-field-item">';
         $html[] = $fieldInformationHtml;
@@ -272,22 +295,6 @@ class AnimationPreviewField implements NodeInterface
     }
 
     /**
-     * Append the value of a form field to its label
-     *
-     * @param string|int $label The label which can also be an integer
-     * @param string|int $value The value which can also be an integer
-     * @return string|int
-     */
-    protected function appendValueToLabelInDebugMode($label, $value)
-    {
-        if ($value !== '' && $GLOBALS['TYPO3_CONF_VARS']['BE']['debug'] && $this->getBackendUser()->isAdmin()) {
-            return $label . ' [' . $value . ']';
-        }
-
-        return $label;
-    }
-
-    /**
      * Merge field information configuration with default and render them.
      *
      * @return array
@@ -302,15 +309,5 @@ class AnimationPreviewField implements NodeInterface
         $options['renderType'] = 'fieldInformation';
         $options['renderData']['fieldInformation'] = $fieldInformation;
         return $this->nodeFactory->create($options)->render();
-    }
-
-    /**
-     * Returns the current BE user.
-     *
-     * @return BackendUserAuthentication
-     */
-    protected function getBackendUser()
-    {
-        return $GLOBALS['BE_USER'];
     }
 }

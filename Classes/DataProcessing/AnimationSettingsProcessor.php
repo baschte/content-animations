@@ -80,7 +80,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData)
     {
         // generate default values => get given processor options
-        $dataObj = $processedData['data'];
+        $dataObj = $processedData['data'] ?? [];
         $optionsToRemove = $this->getOptionsToRemoveFromSettings($cObj, $processorConfiguration);
 
         // remove options from available animations array
