@@ -3,7 +3,14 @@
 	"type": "typo3-cms-extension",
 	"description": "TYPO3 CMS extension to have some fun and animate your content elements",
 	"homepage": "https://www.raphael-gmbh.de",
-	"keywords": ["typo3", "TYPO3 CMS", "tools", "animations", "frontend", "raphael"],
+	"keywords": [
+		"typo3",
+		"TYPO3 CMS",
+		"tools",
+		"animations",
+		"frontend",
+		"raphael"
+	],
 	"version": "2.4.3",
 	"license": [
 		"GPL-3.0-or-later"
@@ -15,7 +22,39 @@
 		}
 	],
 	"require": {
-		"typo3/cms-core": "^10.4 || ^11.5 || ^12.4"
+		"php": ">=8.1.0",
+		"typo3/cms-backend": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-core": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-extbase": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-extensionmanager": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-fluid": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-frontend": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-install": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-rte-ckeditor": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-seo": "^10.4 || ^11.5 || ^12.4"
+	},
+	"require-dev": {
+		"b13/container": "^2.2",
+		"typo3/cms-introduction": "^4.6",
+		"typo3/cms-belog": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-felogin": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-filelist": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-form": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-indexed-search": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-info": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-lowlevel": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-tstemplate": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-workspaces": "^10.4 || ^11.5 || ^12.4",
+	},
+	"config": {
+		"bin-dir": ".build/bin",
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"vendor-dir": ".build/vendor",
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		}
 	},
 	"autoload": {
 		"psr-4": {
@@ -28,8 +67,29 @@
 		}
 	},
 	"extra": {
-        "typo3/cms": {
-            "extension-key": "content_animations"
-        }
-    }
+		"typo3/cms": {
+			"extension-key": "content_animations"
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"[ -d .build/public/_assets ] || mkdir -p .build/public/typo3conf/ext/",
+			"[ -d .build/public/_assets ] || [ -L .build/public/typo3conf/ext/content_animations ] || ln -snvf ../../../../. .build/public/typo3conf/ext/content_animations"
+		],
+		"cgl": [
+			"php-cs-fixer --diff -v fix"
+		],
+		"cgl:ci": [
+			"php-cs-fixer --diff -v --dry-run fix"
+		],
+		"phpstan": [
+			"phpstan analyze --configuration Build/phpstan.neon"
+		],
+		"phpstan:baseline": [
+			"phpstan analyze --configuration Build/phpstan.neon --generate-baseline Build/phpstan-baseline.neon"
+		],
+		"test:php:lint": [
+			"phplint"
+		]
+	},
 }
