@@ -1,6 +1,7 @@
 # Folders
 /.ddev export-ignore
 /.vscode export-ignore
+/Build export-ignore
 
 # Files
 .editorconfig export-ignore
@@ -9,6 +10,7 @@
 .php-cs-fixer.dist.php export-ignore
 .phplint.yml export-ignore
 .stylelintrc export-ignore
+ChangeLog.md export-ignore
 
 # Enforce checkout with linux lf consistent over all plattforms
 *.xml text eol=lf
