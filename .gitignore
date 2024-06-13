@@ -1,0 +1,8 @@
+.build
+composer.lock
+*.cache
+nbproject
+/Documentation-GENERATED-temp/
+
+config/
+var/

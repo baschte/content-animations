@@ -44,7 +44,7 @@
 		"typo3/cms-info": "^10.4 || ^11.5 || ^12.4",
 		"typo3/cms-lowlevel": "^10.4 || ^11.5 || ^12.4",
 		"typo3/cms-tstemplate": "^10.4 || ^11.5 || ^12.4",
-		"typo3/cms-workspaces": "^10.4 || ^11.5 || ^12.4",
+		"typo3/cms-workspaces": "^10.4 || ^11.5 || ^12.4"
 	},
 	"config": {
 		"bin-dir": ".build/bin",
@@ -68,7 +68,8 @@
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "content_animations"
+			"extension-key": "content_animations",
+			"web-dir": ".build/public"
 		}
 	},
 	"scripts": {
@@ -91,5 +92,5 @@
 		"test:php:lint": [
 			"phplint"
 		]
-	},
+	}
 }
