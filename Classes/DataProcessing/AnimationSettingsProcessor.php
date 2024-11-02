@@ -1,17 +1,8 @@
 <?php
 
-namespace Baschte\ContentAnimations\DataProcessing;
+declare(strict_types=1);
 
-/*
- *
- * This file is part of the "content_animations" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2020 Sebastian Richter <info@baschte.de>
- *
- */
+namespace Baschte\ContentAnimations\DataProcessing;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -19,27 +10,16 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
  * DataProcessor to generate animation settings
- *
- * 10 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
- *
- *
- * Advanced TypoScript configuration
- *
- * 10 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
- * 10 {
- *   removeOptions = anchor-placement, once, mirror
- *   as = animationSettings
- * }
  */
 class AnimationSettingsProcessor implements DataProcessorInterface
 {
-    const ANIMATION_PREFIX = 'data-aos';
-    const DATA_COLUMN_PREFIX = 'tx_content_animations_';
+    private const ANIMATION_PREFIX = 'data-aos';
+    private const DATA_COLUMN_PREFIX = 'tx_content_animations_';
 
     /**
-     * @var array
+     * @var array<string>
      */
-    protected $availableAosSettings = [
+    protected array $availableAosSettings = [
         'animation',
         'duration',
         'easing',
@@ -51,18 +31,18 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
-     * @var array
+     * @var array<string>
      */
-    protected $fallbackAosSettings = [
+    protected array $fallbackAosSettings = [
         'easing',
         'once',
         'mirror',
     ];
 
     /**
-     * @var array
+     * @var array<string>
      */
-    protected $aosBooleanSettings = [
+    protected array $aosBooleanSettings = [
         'disable',
         'useClassNames',
         'disableMutationObserver',
@@ -71,15 +51,15 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
-     * @param ContentObjectRenderer $cObj The data of the content element or page
-     * @param array $contentObjectConfiguration The configuration of Content Object
-     * @param array $processorConfiguration The configuration of this processor
-     * @param array $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
-     * @return array the processed data as key/value store
+     * Process data for content animations
      */
-    public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData)
-    {
-        // generate default values => get given processor options
+    public function process(
+        ContentObjectRenderer $cObj,
+        array $contentObjectConfiguration,
+        array $processorConfiguration,
+        array $processedData
+    ): array {
+        /** @var array<string, mixed> $dataObj */
         $dataObj = $processedData['data'] ?? [];
         $optionsToRemove = $this->getOptionsToRemoveFromSettings($cObj, $processorConfiguration);
 
@@ -99,54 +79,52 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param array $array
-     * @param string $path
-     * @param string $delimiter
-     * @return array|string
+     * @param array<string|int, mixed> $array
+     * @throws \RuntimeException
      */
-    private static function getValueByPath(array $array, string $path, string $delimiter = '/')
+    private static function getValueByPath(array $array, string $path, string $delimiter = '/'): mixed
     {
         // Extract parts of the path
-        if (is_string($path)) {
-            if ($path === '') {
-                // Programming error has to be sanitized before calling the method -> global exception
-                throw new \RuntimeException('Path must not be empty', 1341397767);
-            }
-            $path = str_getcsv($path, $delimiter);
+        if ($path === '') {
+            throw new \RuntimeException('Path must not be empty', 1341397767);
         }
+
+        $path = str_getcsv($path, $delimiter);
 
         // Loop through each part and extract its value
         $value = $array;
         foreach ($path as $segment) {
-            $segment = str_replace('-', '_', $segment);
-            if (array_key_exists($segment, $value)) {
+            $segment = (string)str_replace('-', '_', (string)$segment);
+            if (is_array($value) && array_key_exists($segment, $value)) {
                 // Replace current value with child
                 $value = $value[$segment];
             } else {
-                // add default empty value
-                $value = null;
+                return null;
             }
         }
         return $value;
     }
 
     /**
-     * @param ContentObjectRenderer $cObj
-     * @param array $processorConfiguration
-     * @return array
+     * @param array<string, mixed> $processorConfiguration
+     * @return array<int, string>
      */
-    private function getOptionsToRemoveFromSettings(ContentObjectRenderer $cObj, array $processorConfiguration)
+    private function getOptionsToRemoveFromSettings(ContentObjectRenderer $cObj, array $processorConfiguration): array
     {
-        $optionsToRemove = preg_replace('/\s+/', '', $cObj->stdWrapValue('removeOptions', $processorConfiguration)) ?? '';
+        $removeOptionsValue = $cObj->stdWrapValue('removeOptions', $processorConfiguration);
+        $optionsToRemove = is_string($removeOptionsValue) ? preg_replace('/\s+/', '', $removeOptionsValue) : '';
+        if (!is_string($optionsToRemove)) {
+            return [];
+        }
         return explode(',', $optionsToRemove);
     }
 
     /**
-     * @param array $dataObj
-     * @param array $processedData
-     * @return array
+     * @param array<string, mixed> $dataObj
+     * @param array<string, mixed> $processedData
+     * @return array<string, string>
      */
-    private function prefixAndSetValuesToAnimationOptions(array $dataObj, array $processedData)
+    private function prefixAndSetValuesToAnimationOptions(array $dataObj, array $processedData): array
     {
         $animationOptions = [];
         foreach ($this->availableAosSettings as $availableOption) {
@@ -156,28 +134,34 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             $value = self::getValueByPath($dataObj, self::DATA_COLUMN_PREFIX . $availableOption);
 
             // check if animation value is set => otherwise return nothing
-            if ($availableOption === 'animation' && empty($value)) {
+            if ($availableOption === 'animation' && $value === null) {
                 return [];
-            };
+            }
 
             // if no value is given => don't set it to array
-            if (isset($value) && !empty($value)) {
-                $animationOptions[$optionKey] = $value;
+            if ($value !== null && $value !== '') {
+                $animationOptions[$optionKey] = (string)$value;
             }
         }
 
         // add default global settings to animationsArray if they're not set already
         // check if fallbackOptions already set => otherwise set them to default
         foreach ($this->fallbackAosSettings as $fallbackOption) {
-            if (!array_key_exists('data-aos-' . $fallbackOption, $animationOptions) && isset($processedData['aos-' . $fallbackOption])) {
-                $animationOptions['data-aos-' . $fallbackOption] = $processedData['aos-' . $fallbackOption];
+            $fallbackKey = 'data-aos-' . $fallbackOption;
+            $processedDataKey = 'aos-' . $fallbackOption;
+
+            if (!array_key_exists($fallbackKey, $animationOptions)
+                && isset($processedData[$processedDataKey])
+                && $processedData[$processedDataKey] !== ''
+            ) {
+                $animationOptions[$fallbackKey] = (string)$processedData[$processedDataKey];
             }
         }
 
         // check if values should be converted to bool values
         foreach ($animationOptions as $key => $value) {
-            if (in_array(str_replace('data-', '', $key), $this->aosBooleanSettings)) {
-                $animationOptions[$key] = $value === 1 ? 'true' : 'false';
+            if (in_array(str_replace('data-', '', $key), $this->aosBooleanSettings, true)) {
+                $animationOptions[$key] = $value === '1' ? 'true' : 'false';
             }
         }
 
@@ -185,10 +169,9 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param array $animationSettingsArray
-     * @return string
+     * @param array<string, string> $animationSettingsArray
      */
-    private function generateAnimationAttributeSettingsFromAnimationsArray(array $animationSettingsArray)
+    private function generateAnimationAttributeSettingsFromAnimationsArray(array $animationSettingsArray): string
     {
         $animationSettings = '';
         // generate animation settings out of settingsArray
@@ -199,12 +182,12 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param array $optionsToRemove
+     * @param array<int|string, string> $optionsToRemove
      */
-    private function removeOptionsFromAvailableSettings(array $optionsToRemove)
+    private function removeOptionsFromAvailableSettings(array $optionsToRemove): void
     {
         foreach ($optionsToRemove as $option) {
-            if (!empty($option)) {
+            if ($option !== '') {
                 $this->availableAosSettings = ArrayUtility::removeArrayEntryByValue($this->availableAosSettings, $option);
                 $this->fallbackAosSettings = ArrayUtility::removeArrayEntryByValue($this->fallbackAosSettings, $option);
             }
@@ -212,15 +195,17 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param ContentObjectRenderer $cObj
-     * @param array $processorConfiguration
-     * @param array $processedData
-     * @param string $completeAnimationSettings
+     * @param array<string, mixed> $processorConfiguration
+     * @param array<string, mixed> $processedData
      */
-    private function setSettingsToProcessedData(ContentObjectRenderer $cObj, array $processorConfiguration, array &$processedData, string $completeAnimationSettings)
-    {
+    private function setSettingsToProcessedData(
+        ContentObjectRenderer $cObj,
+        array $processorConfiguration,
+        array &$processedData,
+        string $completeAnimationSettings
+    ): void {
         $variableName = $cObj->stdWrapValue('as', $processorConfiguration);
-        if (!empty($variableName)) {
+        if (is_string($variableName) && $variableName !== '') {
             $processedData[$variableName] = $completeAnimationSettings;
         } else {
             $processedData['animationSettings'] = $completeAnimationSettings;

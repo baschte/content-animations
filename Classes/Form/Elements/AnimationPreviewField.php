@@ -1,17 +1,8 @@
 <?php
 
-namespace Baschte\ContentAnimations\Form\Elements;
+declare(strict_types=1);
 
-/*
- *
- * This file is part of the "content_animations" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2019 Sebastian Richter <info@baschte.de>
- *
- */
+namespace Baschte\ContentAnimations\Form\Elements;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Backend\Form\NodeFactory;
@@ -25,14 +16,10 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Class AnimationPreviewField
- *
- * @package Baschte\ContentAnimations\Form\Elements
  */
 class AnimationPreviewField extends AbstractFormElement
 {
     /**
-     * Default field information enabled for this element.
-     *
      * @var array
      */
     protected $defaultFieldInformation = [
@@ -42,8 +29,6 @@ class AnimationPreviewField extends AbstractFormElement
     ];
 
     /**
-     * Default field wizards enabled for this element.
-     *
      * @var array
      */
     protected $defaultFieldWizard = [
@@ -64,25 +49,7 @@ class AnimationPreviewField extends AbstractFormElement
         ],
     ];
 
-    /**
-     * All nodes get an instance of the NodeFactory and the main data array
-     *
-     * @param NodeFactory $nodeFactory
-     * @param array $data
-     */
-    public function __construct(NodeFactory $nodeFactory, array $data)
-    {
-        $this->data = $data;
-        $this->nodeFactory = $nodeFactory;
-    }
-
-    /**
-     * Main render method
-     *
-     * @return array
-     * @throws \TYPO3\CMS\Backend\Form\Exception
-     */
-    public function render()
+    public function render(): array
     {
         $parameterArray = $this->data['parameterArray'];
         $config = $parameterArray['fieldConf']['config'];
@@ -91,16 +58,13 @@ class AnimationPreviewField extends AbstractFormElement
 
         // Initialization:
         $selectId = StringUtility::getUniqueId('tceforms-select-');
-        $selectItems = $parameterArray['fieldConf']['config']['items'];
+        $selectItems = $parameterArray['fieldConf']['config']['items'] ?? [];
         $selectedIcon = '';
-        $size = (int)$config['size'];
+        $size = isset($config['size']) ? (int)$config['size'] : 1;
 
         // Style set on <select/>
         $options = '';
-        $disabled = false;
-        if (!empty($config['readOnly'])) {
-            $disabled = true;
-        }
+        $disabled = isset($config['readOnly']) && $config['readOnly'] !== false;
 
         // Prepare groups
         $selectItemCounter = 0;
@@ -109,31 +73,40 @@ class AnimationPreviewField extends AbstractFormElement
         $selectedValue = '';
         $hasIcons = false;
 
-        if (!empty($parameterArray['itemFormElValue'])) {
+        if (isset($parameterArray['itemFormElValue'][0])) {
             $selectedValue = (string)$parameterArray['itemFormElValue'][0];
         }
 
         foreach ($selectItems as $item) {
-            if (($item['value'] ?? $item[1]) === '--div--') {
+            $itemValue = $item['value'] ?? null;
+            $itemLabel = $item['label'] ?? null;
+
+            if ($itemValue === '--div--') {
                 // IS OPTGROUP
                 if ($selectItemCounter !== 0) {
                     $selectItemGroupCount++;
                 }
                 $selectItemGroups[$selectItemGroupCount]['header'] = [
-                    'title' => $item['label'] ?? $item[0],
+                    'title' => $itemLabel ?? '',
                 ];
             } else {
                 // IS ITEM
-                $icon = !empty($item['icon'] ?? $item[2] ?? null) ? FormEngineUtility::getIconHtml($item['icon'] ?? $item[2], $item['label'] ?? $item[0], $item['label'] ?? $item[0]) : '';
-                $selected = $selectedValue === (string)($item['value'] ?? $item[1]);
+                $itemIcon = $item['icon'] ?? null;
+                if ($itemIcon !== null && $itemIcon !== '') {
+                    $icon = FormEngineUtility::getIconHtml($itemIcon, (string)$itemLabel, (string)$itemLabel);
+                } else {
+                    $icon = '';
+                }
+
+                $selected = $selectedValue === (string)$itemValue;
 
                 if ($selected) {
                     $selectedIcon = $icon;
                 }
 
                 $selectItemGroups[$selectItemGroupCount]['items'][] = [
-                    'title' => $this->appendValueToLabelInDebugMode($item['label'] ?? $item[0], $item['value'] ?? $item[1]),
-                    'value' => $item['value'] ?? $item[1],
+                    'title' => $this->appendValueToLabelInDebugMode((string)$itemLabel, (string)$itemValue),
+                    'value' => $itemValue,
                     'icon' => $icon,
                     'selected' => $selected,
                 ];
@@ -142,30 +115,32 @@ class AnimationPreviewField extends AbstractFormElement
         }
 
         // Fallback icon
-        if (!$selectedIcon && isset($selectItemGroups[0]['items'][0]['icon'])) {
+        if ($selectedIcon === '' && isset($selectItemGroups[0]['items'][0]['icon'])) {
             $selectedIcon = $selectItemGroups[0]['items'][0]['icon'];
         }
 
         // Process groups
         foreach ($selectItemGroups as $selectItemGroup) {
-            // suppress groups without items
-            if (empty($selectItemGroup['items'])) {
+            if (!isset($selectItemGroup['items']) || $selectItemGroup['items'] === []) {
                 continue;
             }
 
-            $optionGroup = is_array($selectItemGroup['header'] ?? null);
-            $options .= ($optionGroup ? '<optgroup label="' . htmlspecialchars($selectItemGroup['header']['title'], ENT_COMPAT, 'UTF-8', false) . '">' : '');
+            $optionGroup = isset($selectItemGroup['header']) && is_array($selectItemGroup['header']);
+            $groupTitle = $optionGroup ? ($selectItemGroup['header']['title'] ?? '') : '';
+            $options .= $optionGroup ? '<optgroup label="' . htmlspecialchars($groupTitle, ENT_COMPAT, 'UTF-8', false) . '">' : '';
 
-            if (is_array($selectItemGroup['items'])) {
-                foreach ($selectItemGroup['items'] as $item) {
-                    $options .= '<option value="' . htmlspecialchars($item['value']) . '" data-icon="' .
-                        htmlspecialchars($item['icon']) . '"'
-                        . ($item['selected'] ? ' selected="selected"' : '') . '>' . htmlspecialchars($item['title'], ENT_COMPAT, 'UTF-8', false) . '</option>';
-                }
-                $hasIcons = !empty($item['icon']);
+            foreach ($selectItemGroup['items'] as $item) {
+                $options .= sprintf(
+                    '<option value="%s" data-icon="%s"%s>%s</option>',
+                    htmlspecialchars((string)$item['value']),
+                    htmlspecialchars($item['icon']),
+                    $item['selected'] ? ' selected="selected"' : '',
+                    htmlspecialchars($item['title'], ENT_COMPAT, 'UTF-8', false)
+                );
+                $hasIcons = $item['icon'] !== '';
             }
 
-            $options .= ($optionGroup ? '</optgroup>' : '');
+            $options .= $optionGroup ? '</optgroup>' : '';
         }
 
         $selectAttributes = [
@@ -174,8 +149,8 @@ class AnimationPreviewField extends AbstractFormElement
             'data-formengine-validation-rules' => $this->getValidationDataAsJsonString($config),
             'class' => 'form-control form-control-adapt',
         ];
-        if ($size) {
-            $selectAttributes['size'] = $size;
+        if ($size > 1) {
+            $selectAttributes['size'] = (string)$size;
         }
         if ($disabled) {
             $selectAttributes['disabled'] = 'disabled';
@@ -203,7 +178,7 @@ class AnimationPreviewField extends AbstractFormElement
             $html[] = '</div>';
         }
         $html[] = '</div>';
-        if (!$disabled && !empty($fieldWizardHtml)) {
+        if (!$disabled && $fieldWizardHtml !== '') {
             $html[] = '<div class="form-wizards-items-bottom">';
             $html[] = $fieldWizardHtml;
             $html[] = '</div>';
@@ -213,14 +188,14 @@ class AnimationPreviewField extends AbstractFormElement
         $html[] = '</div>';
 
         $html[] = '<div id="preview-content-animation">';
-        $html[] = '<div class="preview-label" data-show-preview="false">' . LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label') . '</div>';
+        $previewLabel = LocalizationUtility::translate('LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:preview-label');
+        $html[] = '<div class="preview-label" data-show-preview="false">' . ($previewLabel ?? '') . '</div>';
 
-        if (is_array($parameterArray['itemFormElValue']) && !empty($parameterArray['itemFormElValue'])) {
-            $html[] = '<div class="ce-preview" data-aos="' . $parameterArray['itemFormElValue']['0'] . '">';
-        } else {
-            $html[] = '<div class="ce-preview" data-aos>';
+        $dataAos = '';
+        if (isset($parameterArray['itemFormElValue'][0])) {
+            $dataAos = ' data-aos="' . htmlspecialchars($parameterArray['itemFormElValue'][0]) . '"';
         }
-
+        $html[] = '<div class="ce-preview"' . $dataAos . '>';
         $html[] = '<span class="ce-preview__item"></span>';
         $html[] = '<span class="ce-preview__item"></span>';
         $html[] = '<span class="ce-preview__item"></span>';
@@ -237,69 +212,63 @@ class AnimationPreviewField extends AbstractFormElement
             ],
         ];
 
-        if ((new Typo3Version())->getMajorVersion() === 12) {
-            $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
-                '@baschte/content-animations/preview.js'
-            );
+        $typo3Version = new Typo3Version();
+        if ($typo3Version->getMajorVersion() >= 12) {
+            $result['javaScriptModules'] = [
+                JavaScriptModuleInstruction::create('@baschte/content-animations/preview.js'),
+            ];
         } else {
             $result['requireJsModules'] = [
-                'TYPO3/CMS/ContentAnimations/AnimationPreview'
+                'TYPO3/CMS/ContentAnimations/AnimationPreview',
             ];
         }
+
         return $result;
     }
 
     /**
-     * Build JSON string for validations rules.
-     *
      * @param array $config
-     * @return string
      */
     protected function getValidationDataAsJsonString(array $config): string
     {
         $validationRules = [];
-        if (!empty($config['eval'])) {
+
+        if (isset($config['eval']) && $config['eval'] !== '') {
             $evalList = GeneralUtility::trimExplode(',', $config['eval'], true);
             foreach ($evalList as $evalType) {
-                $validationRules[] = [
-                    'type' => $evalType,
-                ];
+                $validationRules[] = ['type' => $evalType];
             }
         }
-        if (!empty($config['range'])) {
-            $newValidationRule = [
-                'type' => 'range',
-            ];
-            if (!empty($config['range']['lower'])) {
+
+        if (isset($config['range']) && $config['range'] !== []) {
+            $newValidationRule = ['type' => 'range'];
+            if (isset($config['range']['lower'])) {
                 $newValidationRule['lower'] = $config['range']['lower'];
             }
-            if (!empty($config['range']['upper'])) {
+            if (isset($config['range']['upper'])) {
                 $newValidationRule['upper'] = $config['range']['upper'];
             }
             $validationRules[] = $newValidationRule;
         }
-        if (!empty($config['maxitems']) || !empty($config['minitems'])) {
+
+        if (isset($config['maxitems']) || isset($config['minitems'])) {
             $minItems = isset($config['minitems']) ? (int)$config['minitems'] : 0;
             $maxItems = isset($config['maxitems']) ? (int)$config['maxitems'] : 99999;
-            $type = $config['type'] ?: 'range';
+            $type = isset($config['type']) ? $config['type'] : 'range';
             $validationRules[] = [
                 'type' => $type,
                 'minItems' => $minItems,
                 'maxItems' => $maxItems
             ];
         }
-        if (!empty($config['required'])) {
+
+        if (isset($config['required']) && $config['required'] !== false) {
             $validationRules[] = ['type' => 'required'];
         }
-        return json_encode($validationRules);
+
+        return json_encode($validationRules) ?: '[]';
     }
 
-    /**
-     * Merge field information configuration with default and render them.
-     *
-     * @return array
-     * @throws \TYPO3\CMS\Backend\Form\Exception
-     */
     protected function renderFieldInformation(): array
     {
         $options = $this->data;
@@ -308,6 +277,8 @@ class AnimationPreviewField extends AbstractFormElement
         ArrayUtility::mergeRecursiveWithOverrule($fieldInformation, $fieldInformationFromTca);
         $options['renderType'] = 'fieldInformation';
         $options['renderData']['fieldInformation'] = $fieldInformation;
+
+        /** @var array{html: string} */
         return $this->nodeFactory->create($options)->render();
     }
 }
