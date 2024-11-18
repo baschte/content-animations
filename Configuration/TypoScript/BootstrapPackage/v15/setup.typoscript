@@ -1,7 +1,7 @@
 # import default setup for content_animations
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/setup.typoscript">
 
-# support for bootstrap_package v14
+# support for bootstrap_package v15
 lib.contentElement {
     variables {
         aos-easing < plugin.tx_content_animations.variables.aos-easing
