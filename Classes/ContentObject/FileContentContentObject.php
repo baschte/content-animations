@@ -23,15 +23,19 @@ use TYPO3\CMS\Frontend\ContentObject\AbstractContentObject;
  */
 class FileContentContentObject extends AbstractContentObject
 {
+
     /**
-     * Rendering the cObject, FILECONTENT
+     * Renders the content of a file based on the given configuration.
      *
-     * @param array $conf Array of TypoScript properties
-     * @return string Output
+     * @param array<string,mixed> $conf The configuration for rendering the file content. It can contain the following keys:
+     *                    - 'file': The path to the file.
+     *                    - 'file.': Additional configuration for the 'file' parameter.
+     * @return string The content of the file. If the file does not exist or cannot be read, an empty string is returned.
+     * @throws \TYPO3\CMS\Core\Resource\Exception If there is an error while reading the file.
      */
-    public function render($conf = [])
+    public function render($conf = []): string
     {
-        $typo3Version = intval(explode(".", VersionNumberUtility::getCurrentTypo3Version())[0]);
+        $typo3Version = (int) explode(".", VersionNumberUtility::getCurrentTypo3Version())[0];
         $fileContent = '';
         $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
         try {
@@ -40,7 +44,8 @@ class FileContentContentObject extends AbstractContentObject
                 $filePath= Environment::getPublicPath() . PathUtility::getPublicResourceWebPath($file);
             // check if TYPO3 version 9 or higher
             } else {
-                $filePath = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)->sanitize($file);
+                $filePath = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)
+                    ->sanitize($file);
             }
             if (file_exists($filePath)) {
                 $fileContent = file_get_contents($filePath);

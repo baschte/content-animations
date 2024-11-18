@@ -1,0 +1,89 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method stdWrap\\(\\) on TYPO3\\\\CMS\\\\Frontend\\\\ContentObject\\\\ContentObjectRenderer\\|null\\.$#"
+			count: 1
+			path: ../Classes/ContentObject/FileContentContentObject.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\ContentObject\\\\FileContentContentObject\\:\\:render\\(\\) should return string but returns string\\|false\\.$#"
+			count: 1
+			path: ../Classes/ContentObject/FileContentContentObject.php
+
+		-
+			message: "#^Parameter \\#1 \\$conf \\(array\\<string, mixed\\>\\) of method Baschte\\\\ContentAnimations\\\\ContentObject\\\\FileContentContentObject\\:\\:render\\(\\) should be contravariant with parameter \\$conf \\(array\\) of method TYPO3\\\\CMS\\\\Frontend\\\\ContentObject\\\\AbstractContentObject\\:\\:render\\(\\)$#"
+			count: 1
+			path: ../Classes/ContentObject/FileContentContentObject.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\DataProcessing\\\\AnimationSettingsProcessor\\:\\:process\\(\\) has parameter \\$contentObjectConfiguration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/DataProcessing/AnimationSettingsProcessor.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\DataProcessing\\\\AnimationSettingsProcessor\\:\\:process\\(\\) has parameter \\$processedData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/DataProcessing/AnimationSettingsProcessor.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\DataProcessing\\\\AnimationSettingsProcessor\\:\\:process\\(\\) has parameter \\$processorConfiguration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/DataProcessing/AnimationSettingsProcessor.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\DataProcessing\\\\AnimationSettingsProcessor\\:\\:process\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/DataProcessing/AnimationSettingsProcessor.php
+
+		-
+			message: """
+				#^Access to deprecated property \\$nodeFactory of class TYPO3\\\\CMS\\\\Backend\\\\Form\\\\AbstractNode\\:
+				since TYPO3 v12\\.4\\. will be removed in TYPO3 v13\\.0\\.$#
+			"""
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\Form\\\\Elements\\\\AnimationPreviewField\\:\\:getValidationDataAsJsonString\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\Form\\\\Elements\\\\AnimationPreviewField\\:\\:render\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Method Baschte\\\\ContentAnimations\\\\Form\\\\Elements\\\\AnimationPreviewField\\:\\:renderFieldInformation\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Offset 'title' on array\\{title\\: mixed\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Property Baschte\\\\ContentAnimations\\\\Form\\\\Elements\\\\AnimationPreviewField\\:\\:\\$defaultFieldInformation type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Property Baschte\\\\ContentAnimations\\\\Form\\\\Elements\\\\AnimationPreviewField\\:\\:\\$defaultFieldWizard type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Right side of && is always true\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Short ternary operator is not allowed\\. Use null coalesce operator if applicable or consider using long ternary\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between non\\-empty\\-array\\<int\\<0, max\\>, array\\{title\\: string, value\\: mixed, icon\\: string, selected\\: bool\\}\\> and array\\{\\} will always evaluate to false\\.$#"
+			count: 1
+			path: ../Classes/Form/Elements/AnimationPreviewField.php
