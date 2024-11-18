@@ -1,7 +1,7 @@
 name: content-animations
 type: typo3
 docroot: .build/public
-php_version: "8.2"
+php_version: "8.3"
 webserver_type: apache-fpm
 xdebug_enabled: false
 additional_hostnames: []

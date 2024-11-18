@@ -11,14 +11,14 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Sebastian Richter',
     'author_email' => 'info@baschte.de',
     'author_company' => 'raphael GmbH',
-    'state' => 'stable',
+    'state' => 'beta',
     'uploadfolder' => 0,
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '2.4.3',
+    'version' => '2.5.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-12.4.99',
+            'typo3' => '12.4.99-13.1.99',
         ],
         'conflicts' => [],
         'suggests' => [],

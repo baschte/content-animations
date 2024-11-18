@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Baschte\ContentAnimations\Form\Elements;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
-use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Form\Utility\FormEngineUtility;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
@@ -49,6 +48,11 @@ class AnimationPreviewField extends AbstractFormElement
         ],
     ];
 
+    /**
+     * This will render a checkbox or an array of checkboxes
+     *
+     * @return array As defined in initializeResultArray() of AbstractNode
+     */
     public function render(): array
     {
         $parameterArray = $this->data['parameterArray'];
@@ -60,7 +64,7 @@ class AnimationPreviewField extends AbstractFormElement
         $selectId = StringUtility::getUniqueId('tceforms-select-');
         $selectItems = $parameterArray['fieldConf']['config']['items'] ?? [];
         $selectedIcon = '';
-        $size = isset($config['size']) ? (int)$config['size'] : 1;
+        $size = isset($config['size']) ? (int) $config['size'] : 1;
 
         // Style set on <select/>
         $options = '';
@@ -74,7 +78,7 @@ class AnimationPreviewField extends AbstractFormElement
         $hasIcons = false;
 
         if (isset($parameterArray['itemFormElValue'][0])) {
-            $selectedValue = (string)$parameterArray['itemFormElValue'][0];
+            $selectedValue = (string) $parameterArray['itemFormElValue'][0];
         }
 
         foreach ($selectItems as $item) {
@@ -93,19 +97,19 @@ class AnimationPreviewField extends AbstractFormElement
                 // IS ITEM
                 $itemIcon = $item['icon'] ?? null;
                 if ($itemIcon !== null && $itemIcon !== '') {
-                    $icon = FormEngineUtility::getIconHtml($itemIcon, (string)$itemLabel, (string)$itemLabel);
+                    $icon = FormEngineUtility::getIconHtml($itemIcon, (string) $itemLabel, (string) $itemLabel);
                 } else {
                     $icon = '';
                 }
 
-                $selected = $selectedValue === (string)$itemValue;
+                $selected = $selectedValue === (string) $itemValue;
 
                 if ($selected) {
                     $selectedIcon = $icon;
                 }
 
                 $selectItemGroups[$selectItemGroupCount]['items'][] = [
-                    'title' => $this->appendValueToLabelInDebugMode((string)$itemLabel, (string)$itemValue),
+                    'title' => $this->appendValueToLabelInDebugMode((string) $itemLabel, (string) $itemValue),
                     'value' => $itemValue,
                     'icon' => $icon,
                     'selected' => $selected,
@@ -132,7 +136,7 @@ class AnimationPreviewField extends AbstractFormElement
             foreach ($selectItemGroup['items'] as $item) {
                 $options .= sprintf(
                     '<option value="%s" data-icon="%s"%s>%s</option>',
-                    htmlspecialchars((string)$item['value']),
+                    htmlspecialchars((string) $item['value']),
                     htmlspecialchars($item['icon']),
                     $item['selected'] ? ' selected="selected"' : '',
                     htmlspecialchars($item['title'], ENT_COMPAT, 'UTF-8', false)
@@ -150,7 +154,7 @@ class AnimationPreviewField extends AbstractFormElement
             'class' => 'form-control form-control-adapt',
         ];
         if ($size > 1) {
-            $selectAttributes['size'] = (string)$size;
+            $selectAttributes['size'] = (string) $size;
         }
         if ($disabled) {
             $selectAttributes['disabled'] = 'disabled';
@@ -212,11 +216,10 @@ class AnimationPreviewField extends AbstractFormElement
             ],
         ];
 
-        $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() >= 12) {
-            $result['javaScriptModules'] = [
-                JavaScriptModuleInstruction::create('@baschte/content-animations/preview.js'),
-            ];
+        if ((new Typo3Version())->getMajorVersion() >= 12) {
+            $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
+                '@baschte/content-animations/preview.js'
+            );
         } else {
             $result['requireJsModules'] = [
                 'TYPO3/CMS/ContentAnimations/AnimationPreview',
@@ -252,8 +255,8 @@ class AnimationPreviewField extends AbstractFormElement
         }
 
         if (isset($config['maxitems']) || isset($config['minitems'])) {
-            $minItems = isset($config['minitems']) ? (int)$config['minitems'] : 0;
-            $maxItems = isset($config['maxitems']) ? (int)$config['maxitems'] : 99999;
+            $minItems = isset($config['minitems']) ? (int) $config['minitems'] : 0;
+            $maxItems = isset($config['maxitems']) ? (int) $config['maxitems'] : 99999;
             $type = isset($config['type']) ? $config['type'] : 'range';
             $validationRules[] = [
                 'type' => $type,

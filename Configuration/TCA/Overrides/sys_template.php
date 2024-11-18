@@ -5,6 +5,7 @@ if (!defined('TYPO3_MODE') && !defined('TYPO3')) {
 
 // add static typoscript includes
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript', 'Content Animations: Basic Configuration');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/BootstrapPackage/v15', 'Content Animations: Bootstrap Package v15.x');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/BootstrapPackage/v14', 'Content Animations: Bootstrap Package v14.x');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/BootstrapPackage/v13', 'Content Animations: Bootstrap Package v13.x');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('content_animations', 'Configuration/TypoScript/BootstrapPackage/v12', 'Content Animations: Bootstrap Package v12.x');

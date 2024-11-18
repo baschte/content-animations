@@ -40,9 +40,9 @@ class FileContentContentObject extends AbstractContentObject
         $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
         try {
             // check if TYPO3 version 11 or higher
-            if($typo3Version >= 11) {
-                $filePath= Environment::getPublicPath() . PathUtility::getPublicResourceWebPath($file);
-            // check if TYPO3 version 9 or higher
+            if ($typo3Version >= 11) {
+                $filePath = Environment::getPublicPath() . PathUtility::getPublicResourceWebPath($file);
+                // check if TYPO3 version 9 or higher
             } else {
                 $filePath = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)
                     ->sanitize($file);
