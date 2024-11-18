@@ -94,7 +94,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         // Loop through each part and extract its value
         $value = $array;
         foreach ($path as $segment) {
-            $segment = (string)str_replace('-', '_', (string)$segment);
+            $segment = (string) str_replace('-', '_', (string) $segment);
             if (is_array($value) && array_key_exists($segment, $value)) {
                 // Replace current value with child
                 $value = $value[$segment];
@@ -140,7 +140,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
 
             // if no value is given => don't set it to array
             if ($value !== null && $value !== '') {
-                $animationOptions[$optionKey] = (string)$value;
+                $animationOptions[$optionKey] = (string) $value;
             }
         }
 
@@ -150,11 +150,12 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             $fallbackKey = 'data-aos-' . $fallbackOption;
             $processedDataKey = 'aos-' . $fallbackOption;
 
-            if (!array_key_exists($fallbackKey, $animationOptions)
+            if (
+                !array_key_exists($fallbackKey, $animationOptions)
                 && isset($processedData[$processedDataKey])
                 && $processedData[$processedDataKey] !== ''
             ) {
-                $animationOptions[$fallbackKey] = (string)$processedData[$processedDataKey];
+                $animationOptions[$fallbackKey] = (string) $processedData[$processedDataKey];
             }
         }
 

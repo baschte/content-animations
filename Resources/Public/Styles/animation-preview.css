@@ -1,31 +1,31 @@
 #preview-content-animation {
     position: relative;
-    box-sizing: border-box;
     display: block;
+    overflow: hidden;
+    box-sizing: border-box;
     width: 290px;
     height: 140px;
-    border: 1px solid #ccc;
-    background: #ededed;
-    border-radius: 3px;
-    padding: 30px;
     margin-top: 20px;
-    overflow: hidden;
+    padding: 30px;
+    border: 1px solid var(--typo3-form-section-border-color, #ccc);
+    border-radius: 3px;
+    background: var(--typo3-form-section-bg, #ededed);
 }
 
 #preview-content-animation .preview-label {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 12px;
+    z-index: 10;
+    padding: 5px;
+    border-bottom: 1px solid var(--typo3-form-section-border-color, #ccc);
+    border-left: 1px solid var(--typo3-form-section-border-color, #ccc);
+    border-radius: 0 0 0 3px;
     background: #d1e2bd;
     color: #333;
-    padding: 5px;
+    font-size: 12px;
     opacity: 0;
-    z-index: 10;
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-radius: 0 0 0 3px;
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
 }
 
 #preview-content-animation .preview-label[data-show-preview="true"] {
@@ -34,13 +34,13 @@
 
 #preview-content-animation .ce-preview {
     display: block;
+    box-sizing: border-box;
     width: 80px;
     height: 80px;
-    border: 3px solid #333;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    border: 3px solid #333;
 
     -webkit-animation-duration: 2.6s;
     animation-duration: 2.6s;
@@ -56,8 +56,8 @@
     display: block;
     width: 100%;
     height: 5px;
-    background: #333;
     margin-bottom: 5px;
+    background: var(--typo3-form-section-color, #333);
 }
 
 #preview-content-animation .ce-preview .ce-preview__item--xs {
