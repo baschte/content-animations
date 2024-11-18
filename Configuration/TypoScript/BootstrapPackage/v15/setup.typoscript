@@ -14,25 +14,26 @@ lib.contentElement {
             data-aos = TEXT
             data-aos {
                 field = tx_content_animations_animation
+                fieldRequired = tx_content_animations_animation
             }
-            data-aos-duration = TEXT
+            data-aos-duration < .data-aos
             data-aos-duration {
                 field = tx_content_animations_duration
             }
-            data-aos-offset = TEXT
+            data-aos-offset < .data-aos
             data-aos-offset {
                 field = tx_content_animations_offset
             }
-            data-aos-delay = TEXT
+            data-aos-delay < .data-aos
             data-aos-delay {
                 field = tx_content_animations_delay
             }
-            data-aos-easing = TEXT
+            data-aos-easing < .data-aos
             data-aos-easing {
                 field = tx_content_animations_easing
                 ifEmpty = {$plugin.tx_content_animations.aos-easing}
             }
-            data-aos-mirror = TEXT
+            data-aos-mirror < .data-aos
             data-aos-mirror {
                 field = tx_content_animations_mirror
                 replacement.10 {
@@ -41,7 +42,7 @@ lib.contentElement {
                 }
                 ifEmpty = false
             }
-            data-aos-once = TEXT
+            data-aos-once < .data-aos
             data-aos-once {
                 field = tx_content_animations_once
                 replacement.10 {
@@ -50,7 +51,7 @@ lib.contentElement {
                 }
                 ifEmpty = false
             }
-            data-aos-anchor-placement = TEXT
+            data-aos-anchor-placement < .data-aos
             data-aos-anchor-placement {
                 field = tx_content_animations_anchor_placement
             }
