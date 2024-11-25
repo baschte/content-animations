@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.5.2 - 2024-11-25
+### TASKS
+- [TASK] remove unnecessary inline css
+
+## 2.5.1 - 2024-11-18
+### FEATURES
+- [FEATURE] full TYPO3 13 support
+
 ## 2.4.3 - 2024-05-18
 ### BUGFIX
 - [BUGFIX] fixing typing issues

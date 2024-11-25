@@ -7,7 +7,7 @@
 Developer Corner
 ================
 
-Content Animations comes with an out of the box **bootstrap_package v14, v13, v12 and v11** and **fluid_styled_content** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
+Content Animations comes with an out of the box **bootstrap_package v15, v14 and v13** and **fluid_styled_content** support. Just include the static typoscript of your used extension (for example Bootstrap Package) into the site template and you're good to go.
 This extension extends the **Default Fluid Layout** for the necessary data-attributes to get the animation stuff working in the frontend.
 
 
@@ -64,9 +64,3 @@ Javascript
 Content Animations uses the AOS library basis by **Michał Sajnóg** and now the updated fork by **Benjamin Ammann** which doesn't need jQuery or any other dependency.
 
 It's included inline at the page bottom via ``page.jsFooterInline``.
-
-
-Styling
-=======
-
-The css animations are included inline via ``page.cssInline``.

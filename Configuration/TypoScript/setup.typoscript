@@ -18,11 +18,6 @@ plugin.tx_content_animations {
 
 # include necessary aos js and css to footer
 page {
-    cssInline {
-        161113 = FILECONTENT
-        161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.css
-    }
-
     jsFooterInline {
         161113 = FILECONTENT
         161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.4.2.0.min.js
