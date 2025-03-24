@@ -134,7 +134,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             $value = self::getValueByPath($dataObj, self::DATA_COLUMN_PREFIX . $availableOption);
 
             // check if animation value is set => otherwise return nothing
-            if ($availableOption === 'animation' && $value === null) {
+            if ($availableOption === 'animation' && empty($value)) {
                 return [];
             }
 
