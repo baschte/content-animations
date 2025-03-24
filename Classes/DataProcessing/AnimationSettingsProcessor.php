@@ -89,7 +89,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             throw new \RuntimeException('Path must not be empty', 1341397767);
         }
 
-        $path = str_getcsv($path, $delimiter);
+        $path = str_getcsv(string: $path, separator: $delimiter, escape: '');
 
         // Loop through each part and extract its value
         $value = $array;
