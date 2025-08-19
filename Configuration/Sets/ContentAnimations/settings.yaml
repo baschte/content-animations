@@ -1,0 +1,5 @@
+plugin:
+  tx_content_animations:
+    aos-easing: ease
+    aos-once: true
+    aos-mirror: false

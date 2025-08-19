@@ -1,0 +1,4 @@
+name: 'content-animations/fluid-styled-content'
+label: 'Content Animations: Fluid Styled Content'
+dependencies:
+  - 'content-animations/basic'

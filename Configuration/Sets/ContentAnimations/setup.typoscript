@@ -1,0 +1,28 @@
+# default definition for content_animations
+plugin.tx_content_animations {
+    variables {
+        aos-easing = TEXT
+        aos-easing.value = {$plugin.tx_content_animations.aos-easing}
+
+        aos-once = TEXT
+        aos-once.value = {$plugin.tx_content_animations.aos-once}
+
+        aos-mirror = TEXT
+        aos-mirror.value = {$plugin.tx_content_animations.aos-mirror}
+    }
+
+    dataProcessing {
+        78911002 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
+    }
+}
+
+# include necessary aos js and css to footer
+page {
+    jsFooterInline {
+        161113 = FILECONTENT
+        161113.file = EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.4.2.0.min.js
+
+        161114 = TEXT
+        161114.value = AOS.init();
+    }
+}

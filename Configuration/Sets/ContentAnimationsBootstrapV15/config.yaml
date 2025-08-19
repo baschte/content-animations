@@ -1,0 +1,4 @@
+name: 'content-animations/bootstrap-v15'
+label: 'Content Animations: Bootstrap Package v15.x'
+dependencies:
+  - 'content-animations/basic'

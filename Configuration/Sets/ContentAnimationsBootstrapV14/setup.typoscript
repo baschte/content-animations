@@ -1,0 +1,57 @@
+# support for bootstrap_package v14
+lib.contentElement {
+    variables {
+        aos-easing < plugin.tx_content_animations.variables.aos-easing
+        aos-once < plugin.tx_content_animations.variables.aos-once
+        aos-mirror < plugin.tx_content_animations.variables.aos-mirror
+    }
+    dataProcessing {
+        78911002 < plugin.tx_content_animations.dataProcessing.78911002
+        1682424577.data {
+            data-aos = TEXT
+            data-aos {
+                field = tx_content_animations_animation
+                fieldRequired = tx_content_animations_animation
+            }
+            data-aos-duration < .data-aos
+            data-aos-duration {
+                field = tx_content_animations_duration
+            }
+            data-aos-offset < .data-aos
+            data-aos-offset {
+                field = tx_content_animations_offset
+            }
+            data-aos-delay < .data-aos
+            data-aos-delay {
+                field = tx_content_animations_delay
+            }
+            data-aos-easing < .data-aos
+            data-aos-easing {
+                field = tx_content_animations_easing
+                ifEmpty = {$plugin.tx_content_animations.aos-easing}
+            }
+            data-aos-mirror < .data-aos
+            data-aos-mirror {
+                field = tx_content_animations_mirror
+                replacement.10 {
+                  search = 1
+                  replace = true
+                }
+                ifEmpty = false
+            }
+            data-aos-once < .data-aos
+            data-aos-once {
+                field = tx_content_animations_once
+                replacement.10 {
+                  search = 1
+                  replace = true
+                }
+                ifEmpty = false
+            }
+            data-aos-anchor-placement < .data-aos
+            data-aos-anchor-placement {
+                field = tx_content_animations_anchor_placement
+            }
+        }
+    }
+}

@@ -1,0 +1,4 @@
+name: 'content-animations/basic'
+label: 'Content Animations: Basic Configuration'
+dependencies:
+  - 'typo3/cms-frontend'
