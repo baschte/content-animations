@@ -73,7 +73,7 @@ Since this is a TYPO3 extension, manual validation requires a TYPO3 instance:
 ### Repository Structure
 ```
 .
-├── Classes/                    # PHP source code (3 files)
+├── Classes/                    # PHP source code (6 files)
 │   ├── ContentObject/         # TYPO3 content objects
 │   ├── DataProcessing/        # TypoScript data processors
 │   └── Form/Elements/         # TYPO3 backend form elements
@@ -87,8 +87,10 @@ Since this is a TYPO3 extension, manual validation requires a TYPO3 instance:
 ├── .ddev/                     # DDEV configuration
 ├── Build/                     # PHPStan configuration
 ├── composer.json              # Dependencies and scripts
-└── ext_*.php                  # TYPO3 extension configuration
+└── ext_*.php                  # TYPO3 extension configuration (3 files)
 ```
+
+**Total extension files**: 9 PHP files (small codebase, fast validation)
 
 ### Key Files to Check When Making Changes
 - **Classes/Form/Elements/AnimationPreviewField.php**: Backend animation preview
@@ -149,3 +151,29 @@ Since this is a TYPO3 extension, manual validation requires a TYPO3 instance:
 - Verify composer dependencies: `composer validate`
 - Check TYPO3 compatibility: Review ext_emconf.php version constraints
 - Review PHPStan baseline: Check Build/phpstan-baseline.neon for known issues
+
+## Quick Reference
+
+**Essential Commands for Development:**
+```bash
+# Fast setup (production dependencies only)
+composer install --no-dev  # 15 seconds
+
+# Basic validation (no dependencies needed)
+php -l Classes/Form/Elements/AnimationPreviewField.php
+find Classes/ -name "*.php" -exec php -l {} \;
+
+# Full development setup (when needed)
+composer install  # 8-15 minutes, requires patience
+
+# Code quality (requires full install)
+composer run cgl
+composer run phpstan
+```
+
+**Key Facts:**
+- 9 PHP files in extension (fast to validate)
+- 6,641 total PHP files with dependencies
+- No unit tests - only code quality tools
+- TYPO3 extension requiring TYPO3 instance for full testing
+- Network issues common during dependency installation
