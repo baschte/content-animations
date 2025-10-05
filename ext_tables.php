@@ -3,9 +3,6 @@
 defined('TYPO3') || die();
 
 call_user_func(static function () {
-    // get typo3 version
-    $typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-
     // get extensionConfiguration for 'content_animations'
     $extensionManagementUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class);
     $extensionConfiguration = $extensionManagementUtility->get('content_animations');
@@ -37,7 +34,7 @@ call_user_func(static function () {
     }
 
     // add own footer partial to containerConfiguration if TYPO3 > v11 and ext: container is installed and used
-    if ($typo3Version->getMajorVersion() > 11) {
+    if (version_compare(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getCurrentTypo3Version(), '11', '>')) {
         if (empty($extensionConfiguration['hideFooterAnimationLabel']) || !$extensionConfiguration['hideFooterAnimationLabel']) {
             $containerConfiguration = &$GLOBALS['TCA']['tt_content']['containerConfiguration'] ?? null;
             if ($containerConfiguration) {
