@@ -12,8 +12,11 @@ call_user_func(static function () {
 
     // register own typoscript FILECONTENT cObject (can be removed once v11 suppot is dropped)
     if (version_compare(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getCurrentTypo3Version(), '12', '<')) {
+        // @extensionScannerIgnoreLine
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects']['FILECONTENT'])) {
+            // @extensionScannerIgnoreLine
             $GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects'] = array_merge(
+                // @extensionScannerIgnoreLine
                 $GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects'] ?? [],
                 ['FILECONTENT' => \Baschte\ContentAnimations\ContentObject\FileContentContentObject::class]
             );
@@ -28,6 +31,7 @@ call_user_func(static function () {
 
         // register footer preview to tt_content_drawFooter hook if this feature is active
         if (empty($extConf['hideFooterAnimationLabel']) || !$extConf['hideFooterAnimationLabel']) {
+            // @extensionScannerIgnoreLine
             TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('templates.typo3/cms-backend.partialsRootPaths = baschte/content-animations:Resources/Private/TemplateOverrides/typo3/cms-backend');
         }
     }
