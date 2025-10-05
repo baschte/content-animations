@@ -10,7 +10,7 @@ call_user_func(static function () {
         'class' => \Baschte\ContentAnimations\Form\Elements\AnimationPreviewField::class
     ];
 
-    // register own typoscript FILECONTENT cObject (can be removed once v11 suppot is dropped)
+    // register own typoscript FILECONTENT cObject (can be removed once v11 support is dropped)
     if (version_compare(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getCurrentTypo3Version(), '12', '<')) {
         // @extensionScannerIgnoreLine
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['FE']['ContentObjects']['FILECONTENT'])) {
