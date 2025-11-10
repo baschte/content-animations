@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * This file is part of the package baschte/content-animations.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace Baschte\ContentAnimations\ContentObject;
 
 /*
@@ -27,17 +35,16 @@ class FileContentContentObject extends AbstractContentObject
     /**
      * Renders the content of a file based on the given configuration.
      *
-     * @param array<string,mixed> $conf The configuration for rendering the file content. It can contain the following keys:
-     *                    - 'file': The path to the file.
-     *                    - 'file.': Additional configuration for the 'file' parameter.
      * @return string The content of the file. If the file does not exist or cannot be read, an empty string is returned.
      * @throws \TYPO3\CMS\Core\Resource\Exception If there is an error while reading the file.
      */
-    public function render($conf = []): string
+    public function render($conf = []): string // @phpstan-ignore-line
     {
         $typo3Version = (int) explode('.', VersionNumberUtility::getCurrentTypo3Version())[0];
         $fileContent = '';
-        $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
+        $file = isset($conf['file.']) && $this->cObj !== null
+            ? $this->cObj->stdWrap($conf['file'], $conf['file.'])
+            : ($conf['file'] ?? '');
         try {
             // check if TYPO3 version 11 or higher
             if ($typo3Version >= 11) {
@@ -48,7 +55,8 @@ class FileContentContentObject extends AbstractContentObject
                     ->sanitize($file);
             }
             if (file_exists($filePath)) {
-                $fileContent = file_get_contents($filePath);
+                $content = file_get_contents($filePath);
+                $fileContent = $content !== false ? $content : '';
             }
         } catch (\TYPO3\CMS\Core\Resource\Exception $e) {
             // do nothing

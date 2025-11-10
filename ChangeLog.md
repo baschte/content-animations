@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.6.0 - 2025-11-10
+### FEATURES
+- [FEATURE] full TYPO3 13 support with SiteSets - thanks to Stephan Kellermayr
+- [FEATURE] Add content blocks support - thanks to Sebastian Mueller
+
+### BREAKING
+- [BREAKING] remove TYPO3 12 Support
+
 ## 2.5.4 - 2025-03-24
 ### BUGFIX
 - [BUGFIX] full PHP 8.4 support

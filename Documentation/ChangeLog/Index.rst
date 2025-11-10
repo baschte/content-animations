@@ -20,6 +20,10 @@ Features
 - [FEATURE] full TYPO3 13 support with SiteSets - thanks to Stephan Kellermayr
 - [FEATURE] Add content blocks support - thanks to Sebastian Mueller
 
+Breaking
+^^^^^^^^
+- [BREAKING] remove TYPO3 12 support
+
 2.5.4 - 2025-03-24
 ===================
 

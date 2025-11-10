@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package baschte/content-animations.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 defined('TYPO3') || die();
 
 call_user_func(static function () {
@@ -10,7 +17,9 @@ call_user_func(static function () {
 
     // add animation tab to all CTypes if not disabled via extension settings
     if (!$extConf['disableAddAnimationsTab'] && !$extConf['extendedAnimationSettings']) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content', '
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+            'tt_content',
+            '
         --div--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:tab.animation,
         --palette--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:palette.animation-settings;
             tx_content_animations_animation,
@@ -22,7 +31,9 @@ call_user_func(static function () {
 
     // extended animation settings for all CTypes
     if (!$extConf['disableAddAnimationsTab'] && $extConf['extendedAnimationSettings']) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content', '
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+            'tt_content',
+            '
         --div--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:tab.animation,
         --palette--;LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:palette.animation-settings;
             tx_content_animations_animation,

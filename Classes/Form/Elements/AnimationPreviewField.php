@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the package baschte/content-animations.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace Baschte\ContentAnimations\Form\Elements;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
@@ -21,7 +28,7 @@ class AnimationPreviewField extends AbstractFormElement
     /**
      * @var array
      */
-    protected $defaultFieldInformation = [
+    protected $defaultFieldInformation = [ // @phpstan-ignore-line
         'tcaDescription' => [
             'renderType' => 'tcaDescription',
         ],
@@ -30,7 +37,7 @@ class AnimationPreviewField extends AbstractFormElement
     /**
      * @var array
      */
-    protected $defaultFieldWizard = [
+    protected $defaultFieldWizard = [ // @phpstan-ignore-line
         'localizationStateSelector' => [
             'renderType' => 'localizationStateSelector',
         ],
@@ -51,7 +58,7 @@ class AnimationPreviewField extends AbstractFormElement
     /**
      * This will render a checkbox or an array of checkboxes
      *
-     * @return array As defined in initializeResultArray() of AbstractNode
+     * @return array<string, mixed> As defined in initializeResultArray() of AbstractNode
      */
     public function render(): array
     {
@@ -125,12 +132,14 @@ class AnimationPreviewField extends AbstractFormElement
 
         // Process groups
         foreach ($selectItemGroups as $selectItemGroup) {
-            if (!isset($selectItemGroup['items']) || $selectItemGroup['items'] === []) {
+            if (!isset($selectItemGroup['items'])) {
                 continue;
             }
 
-            $optionGroup = isset($selectItemGroup['header']) && is_array($selectItemGroup['header']);
-            $groupTitle = $optionGroup ? ($selectItemGroup['header']['title'] ?? '') : '';
+            $optionGroup = isset($selectItemGroup['header']);
+            $groupTitle = $optionGroup
+                ? (string)$selectItemGroup['header']['title']
+                : '';
             $options .= $optionGroup ? '<optgroup label="' . htmlspecialchars($groupTitle, ENT_COMPAT, 'UTF-8', false) . '">' : '';
 
             foreach ($selectItemGroup['items'] as $item) {
@@ -212,7 +221,7 @@ class AnimationPreviewField extends AbstractFormElement
             'additionalInlineLanguageLabelFiles' => [],
             'stylesheetFiles' => [
                 'EXT:content_animations/Resources/Public/Styles/animation-preview.min.css',
-                'EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.css'
+                'EXT:content_animations/Resources/Public/JavaScript/Vendor/simple-aos/aos.css',
             ],
         ];
 
@@ -230,9 +239,9 @@ class AnimationPreviewField extends AbstractFormElement
     }
 
     /**
-     * @param array $config
+     * @return string
      */
-    protected function getValidationDataAsJsonString(array $config): string
+    protected function getValidationDataAsJsonString(array $config): string // @phpstan-ignore-line
     {
         $validationRules = [];
 
@@ -261,7 +270,7 @@ class AnimationPreviewField extends AbstractFormElement
             $validationRules[] = [
                 'type' => $type,
                 'minItems' => $minItems,
-                'maxItems' => $maxItems
+                'maxItems' => $maxItems,
             ];
         }
 
@@ -269,9 +278,12 @@ class AnimationPreviewField extends AbstractFormElement
             $validationRules[] = ['type' => 'required'];
         }
 
-        return json_encode($validationRules) ?: '[]';
+        return json_encode($validationRules) !== false ? json_encode($validationRules) : '[]';
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function renderFieldInformation(): array
     {
         $options = $this->data;

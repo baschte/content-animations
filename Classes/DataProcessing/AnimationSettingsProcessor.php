@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the package baschte/content-animations.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace Baschte\ContentAnimations\DataProcessing;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
@@ -42,7 +49,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected array $aosBooleanSettings = [
         'disable',
@@ -53,14 +60,16 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $animationSettings = [];
 
     /**
      * Process data for content animations
+     *
+     * @return array<string, mixed>
      */
-    public function process(
+    public function process(// @phpstan-ignore-line
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
@@ -142,7 +151,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             $value = self::getValueByPath($dataObj, self::DATA_COLUMN_PREFIX . $availableOption);
 
             // check if animation value is set => otherwise return nothing
-            if ($availableOption === 'animation' && empty($value)) {
+            if ($availableOption === 'animation' && ($value === null || $value === '')) {
                 return [];
             }
 
@@ -157,7 +166,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         foreach ($this->fallbackAosSettings as $fallbackOption) {
             $fallbackKey = 'data-aos-' . $fallbackOption;
             $processedDataKey = 'aos-' . $fallbackOption;
-            if(!array_key_exists($fallbackKey, $animationOptions) &&
+            if (!array_key_exists($fallbackKey, $animationOptions) &&
              array_key_exists($processedDataKey, $processedData) &&
              $processedData[$processedDataKey] !== ''
             ) {
