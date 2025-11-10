@@ -75,8 +75,25 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ): array {
-        /** @var array<string, mixed> $dataObj */
-        $dataObj = $processedData['data'] ?? [];
+        $sourceData = $processedData['data'] ?? [];
+
+        if (is_array($sourceData)) {
+            $dataObj = $sourceData;
+        } elseif (
+            is_object($sourceData)
+            && class_exists(\TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData::class)
+            && $sourceData instanceof \TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData
+        ) {
+            if (method_exists($sourceData, 'getRawRecord')) {
+                $dataObj = $sourceData->getRawRecord()->toArray();
+            } else {
+                // fallback for TYPO3 12 and content-blocks 0.7.19
+                $dataObj = $sourceData->_raw;
+            }
+        } else {
+            $dataObj = [];
+        }
+
         $optionsToRemove = $this->getOptionsToRemoveFromSettings($cObj, $processorConfiguration);
         $this->animationSettings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('content_animations');
 
