@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Baschte\ContentAnimations\DataProcessing;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -51,6 +53,11 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
+     * @var array
+     */
+    protected array $animationSettings = [];
+
+    /**
      * Process data for content animations
      */
     public function process(
@@ -62,6 +69,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         /** @var array<string, mixed> $dataObj */
         $dataObj = $processedData['data'] ?? [];
         $optionsToRemove = $this->getOptionsToRemoveFromSettings($cObj, $processorConfiguration);
+        $this->animationSettings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('content_animations');
 
         // remove options from available animations array
         $this->removeOptionsFromAvailableSettings($optionsToRemove);
@@ -149,12 +157,15 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         foreach ($this->fallbackAosSettings as $fallbackOption) {
             $fallbackKey = 'data-aos-' . $fallbackOption;
             $processedDataKey = 'aos-' . $fallbackOption;
-
-            if (
-                !array_key_exists($fallbackKey, $animationOptions)
-                && isset($processedData[$processedDataKey])
-                && $processedData[$processedDataKey] !== ''
+            if(!array_key_exists($fallbackKey, $animationOptions) &&
+             array_key_exists($processedDataKey, $processedData) &&
+             $processedData[$processedDataKey] !== ''
             ) {
+                $animationOptions[$fallbackKey] = (string) $processedData[$processedDataKey];
+            }
+
+            // override settings with global defaults if extendedAnimationSettings are not activated
+            if (array_key_exists('extendedAnimationSettings', $this->animationSettings) && $this->animationSettings['extendedAnimationSettings'] !== '1') {
                 $animationOptions[$fallbackKey] = (string) $processedData[$processedDataKey];
             }
         }
