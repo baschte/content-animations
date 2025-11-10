@@ -35,7 +35,7 @@ class FileContentContentObject extends AbstractContentObject
      */
     public function render($conf = []): string
     {
-        $typo3Version = (int) explode(".", VersionNumberUtility::getCurrentTypo3Version())[0];
+        $typo3Version = (int) explode('.', VersionNumberUtility::getCurrentTypo3Version())[0];
         $fileContent = '';
         $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
         try {

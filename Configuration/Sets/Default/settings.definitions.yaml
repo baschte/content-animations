@@ -1,0 +1,43 @@
+categories:
+  ContentAnimations:
+    label: 'Animation settings'
+
+settings:
+  plugin.tx_content_animations.aos-easing:
+    label: 'Default easing for animations'
+    category: ContentAnimations
+    type: string
+    enum:
+      linear: 'linear'
+      ease: 'ease'
+      ease-in: 'ease-in'
+      ease-out: 'ease-out'
+      ease-in-out: 'ease-in-out'
+      ease-in-back: 'ease-in-back'
+      ease-out-back: 'ease-out-back'
+      ease-in-out-back: 'ease-in-out-back'
+      ease-in-sine: 'ease-in-sine'
+      ease-out-sine: 'ease-out-sine'
+      ease-in-out-sine: 'ease-in-out-sine'
+      ease-in-quad: 'ease-in-quad'
+      ease-out-quad: 'ease-out-quad'
+      ease-in-out-quad: 'ease-in-out-quad'
+      ease-in-cubic: 'ease-in-cubic'
+      ease-out-cubic: 'ease-out-cubic'
+      ease-in-out-cubic: 'ease-in-out-cubic'
+      ease-in-quart: 'ease-in-quart'
+      ease-out-quart: 'ease-out-quart'
+      ease-in-out-quart: 'ease-in-out-quart'
+    default: 'ease'
+
+  plugin.tx_content_animations.aos-once:
+    label: 'Whether animation should happen only once - while scrolling down?'
+    category: ContentAnimations
+    type: bool
+    default: true
+
+  plugin.tx_content_animations.aos-mirror:
+    label: 'Whether elements should animate out while scrolling past them?'
+    category: ContentAnimations
+    type: bool
+    default: false
