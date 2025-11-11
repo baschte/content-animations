@@ -24,6 +24,13 @@ Breaking
 ^^^^^^^^
 - [BREAKING] remove TYPO3 12 support
 
+2.5.5 - 2025-11-11
+===================
+
+FEATURE
+^^^^^^^
+- [FEATURE] add content blocks support
+
 2.5.4 - 2025-03-24
 ===================
 
