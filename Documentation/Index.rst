@@ -58,5 +58,6 @@ Content Animations
    Editor/Index
    Developer/Index
    Administrator/Index
+   Migration/Index
    ChangeLog/Index
    Links

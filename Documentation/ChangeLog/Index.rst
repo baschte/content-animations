@@ -19,10 +19,25 @@ Features
 ^^^^^^^^
 - [FEATURE] full TYPO3 13 support with SiteSets - thanks to Stephan Kellermayr
 - [FEATURE] Add content blocks support - thanks to Sebastian Mueller
+- [FEATURE] Modern TYPO3 13 compliance improvements
+- [FEATURE] Replace FILECONTENT with AssetCollector EventListener
+- [FEATURE] Add Icon Registry configuration
 
-Breaking
-^^^^^^^^
-- [BREAKING] remove TYPO3 12 support
+Tasks
+^^^^^
+- [TASK] Modernize TCA item syntax to TYPO3 13 standard (label/value/icon arrays)
+- [TASK] Migrate TCA type 'input' with eval 'int' to type 'number'
+- [TASK] Mark required services as public in Services.yaml
+- [TASK] Remove all TYPO3 <13 version checks and compatibility code
+- [TASK] Clean up ext_localconf.php (remove deprecated FILECONTENT registration)
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+- [!!!][BREAKING] remove TYPO3 12 support
+- [!!!][BREAKING] Removed FILECONTENT ContentObject - AOS JavaScript now loaded via EventListener
+- [!!!][BREAKING] Removed FileContentContentObject class (replaced by AddAosJavaScriptEventListener)
+- [!!!][BREAKING] ext_tables.php restructured - TCA columns moved to Configuration/TCA/Overrides/
+- [!!!][BREAKING] TypoScript: page.jsFooterInline.161113 and 161114 removed (automatic via EventListener)
 
 2.5.5 - 2025-11-11
 ===================

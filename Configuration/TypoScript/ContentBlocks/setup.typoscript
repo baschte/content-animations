@@ -1,0 +1,16 @@
+# import default setup for content_animations
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/setup.typoscript">
+
+# support for content_blocks
+lib.contentBlock {
+    dataProcessing {
+        78911002 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
+    }
+
+    variables {
+        aos-easing < plugin.tx_content_animations.variables.aos-easing
+        aos-once < plugin.tx_content_animations.variables.aos-once
+        aos-mirror < plugin.tx_content_animations.variables.aos-mirror
+    }
+}
+

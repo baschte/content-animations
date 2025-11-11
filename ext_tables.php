@@ -45,14 +45,12 @@ call_user_func(static function () {
         );
     }
 
-    // add own footer partial to containerConfiguration if TYPO3 > v11 and ext: container is installed and used
-    if (version_compare(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getCurrentTypo3Version(), '11', '>')) {
-        if (empty($extConf['hideFooterAnimationLabel']) || !$extConf['hideFooterAnimationLabel']) {
-            $containerConfiguration = &$GLOBALS['TCA']['tt_content']['containerConfiguration'] ?? null;
-            if ($containerConfiguration) {
-                foreach (array_keys($containerConfiguration) as $cType) {
-                    $containerConfiguration[$cType]['gridPartialPaths'][] = 'EXT:content_animations/Resources/Private/TemplateOverrides/typo3/cms-backend/Partials';
-                }
+    // add own footer partial to containerConfiguration if container extension is installed
+    if (empty($extConf['hideFooterAnimationLabel']) || !$extConf['hideFooterAnimationLabel']) {
+        $containerConfiguration = &$GLOBALS['TCA']['tt_content']['containerConfiguration'] ?? null;
+        if ($containerConfiguration) {
+            foreach (array_keys($containerConfiguration) as $cType) {
+                $containerConfiguration[$cType]['gridPartialPaths'][] = 'EXT:content_animations/Resources/Private/TemplateOverrides/typo3/cms-backend/Partials';
             }
         }
     }

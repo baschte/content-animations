@@ -84,12 +84,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             && class_exists(\TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData::class)
             && $sourceData instanceof \TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData
         ) {
-            if (method_exists($sourceData, 'getRawRecord')) {
-                $dataObj = $sourceData->getRawRecord()->toArray();
-            } else {
-                // fallback for TYPO3 12 and content-blocks 0.7.19
-                $dataObj = $sourceData->_raw;
-            }
+            $dataObj = $sourceData->getRawRecord()->toArray();
         } else {
             $dataObj = [];
         }

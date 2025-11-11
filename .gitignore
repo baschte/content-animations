@@ -4,6 +4,7 @@ composer.lock
 *.cache
 nbproject
 /Documentation-GENERATED-temp/
+/ContentBlocks
 
 config/
 var/

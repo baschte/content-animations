@@ -1,0 +1,4 @@
+name: baschte/content-animations-content-blocks
+label: "Content Animations: Content Blocks"
+dependencies:
+  - baschte/content-animations

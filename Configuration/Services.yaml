@@ -6,8 +6,19 @@ services:
 
   Baschte\ContentAnimations\:
     resource: '../Classes/*'
+    exclude: '../Classes/EventListener/*'
 
-  Baschte\ContentAnimations\ContentObject\FileContentContentObject:
+  # Public services (required for FormEngine elements)
+  Baschte\ContentAnimations\Form\Elements\AnimationPreviewField:
+    public: true
+
+  Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor:
+    public: true
+
+  # Event Listeners
+  Baschte\ContentAnimations\EventListener\AddAosJavaScriptEventListener:
     tags:
-      - name: frontend.contentobject
-        identifier: 'FILECONTENT'
+      - name: event.listener
+        identifier: 'content-animations/add-aos-javascript'
+        event: TYPO3\CMS\Core\Page\Event\BeforeJavaScriptsRenderingEvent
+        method: '__invoke'
