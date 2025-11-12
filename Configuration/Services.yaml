@@ -17,8 +17,17 @@ services:
 
   # Event Listeners
   Baschte\ContentAnimations\EventListener\AddAosJavaScriptEventListener:
+    autowire: true
     tags:
       - name: event.listener
         identifier: 'content-animations/add-aos-javascript'
         event: TYPO3\CMS\Core\Page\Event\BeforeJavaScriptsRenderingEvent
+        method: '__invoke'
+
+  Baschte\ContentAnimations\EventListener\AddAosStyleEventListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'content-animations/add-aos-style'
+        event: TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent
         method: '__invoke'

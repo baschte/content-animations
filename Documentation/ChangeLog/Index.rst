@@ -22,6 +22,9 @@ Features
 - [FEATURE] Modern TYPO3 13 compliance improvements
 - [FEATURE] Replace FILECONTENT with AssetCollector EventListener
 - [FEATURE] Add Icon Registry configuration
+- [FEATURE] Full Content Security Policy (CSP) support with automatic nonce handling
+- [FEATURE] Automatic CSP detection - no manual configuration needed
+- [FEATURE] AddAosStyleEventListener for CSP-compliant CSS loading
 
 Tasks
 ^^^^^
@@ -30,6 +33,8 @@ Tasks
 - [TASK] Mark required services as public in Services.yaml
 - [TASK] Remove all TYPO3 <13 version checks and compatibility code
 - [TASK] Clean up ext_localconf.php (remove deprecated FILECONTENT registration)
+- [TASK] Update Simple-AOS library to 4.2.1 without CSS injection
+- [TASK] Implement conditional nonce attributes (only when CSP is active)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
@@ -38,6 +43,12 @@ Breaking Changes
 - [!!!][BREAKING] Removed FileContentContentObject class (replaced by AddAosJavaScriptEventListener)
 - [!!!][BREAKING] ext_tables.php restructured - TCA columns moved to Configuration/TCA/Overrides/
 - [!!!][BREAKING] TypoScript: page.jsFooterInline.161113 and 161114 removed (automatic via EventListener)
+
+Security
+^^^^^^^^
+- [SECURITY] CSP compatibility resolves inline script/style violations (closes #21)
+- [SECURITY] Nonce attributes added to inline JavaScript and CSS when CSP is enabled
+- [SECURITY] Clean HTML output when CSP is disabled (no unnecessary nonce attributes)
 
 2.5.5 - 2025-11-11
 ===================
