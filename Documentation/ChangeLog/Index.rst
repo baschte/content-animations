@@ -12,6 +12,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+2.6.0 - 2025-11-12
+===================
+
+Features
+^^^^^^^^
+- [FEATURE] full TYPO3 13 support with SiteSets - thanks to Stephan Kellermayr
+- [FEATURE] Add content blocks support - thanks to Sebastian Mueller
+- [FEATURE] Modern TYPO3 13 compliance improvements
+- [FEATURE] Replace FILECONTENT with AssetCollector EventListener
+- [FEATURE] Add Icon Registry configuration
+- [FEATURE] Full Content Security Policy (CSP) support with automatic nonce handling
+- [FEATURE] Automatic CSP detection - no manual configuration needed
+- [FEATURE] AddAosStyleEventListener for CSP-compliant CSS loading
+
+Tasks
+^^^^^
+- [TASK] Modernize TCA item syntax to TYPO3 13 standard (label/value/icon arrays)
+- [TASK] Migrate TCA type 'input' with eval 'int' to type 'number'
+- [TASK] Mark required services as public in Services.yaml
+- [TASK] Remove all TYPO3 <13 version checks and compatibility code
+- [TASK] Clean up ext_localconf.php (remove deprecated FILECONTENT registration)
+- [TASK] Update Simple-AOS library to 4.2.1 without CSS injection
+- [TASK] Implement conditional nonce attributes (only when CSP is active)
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+- [!!!][BREAKING] remove TYPO3 12 support
+- [!!!][BREAKING] Removed FILECONTENT ContentObject - AOS JavaScript now loaded via EventListener
+- [!!!][BREAKING] Removed FileContentContentObject class (replaced by AddAosJavaScriptEventListener)
+- [!!!][BREAKING] ext_tables.php restructured - TCA columns moved to Configuration/TCA/Overrides/
+- [!!!][BREAKING] TypoScript: page.jsFooterInline.161113 and 161114 removed (automatic via EventListener)
+
+Security
+^^^^^^^^
+- [SECURITY] CSP compatibility resolves inline script/style violations (closes #21)
+- [SECURITY] Nonce attributes added to inline JavaScript and CSS when CSP is enabled
+- [SECURITY] Clean HTML output when CSP is disabled (no unnecessary nonce attributes)
+
 2.5.5 - 2025-11-11
 ===================
 

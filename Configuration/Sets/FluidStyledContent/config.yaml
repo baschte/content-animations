@@ -1,4 +1,4 @@
 name: baschte/content-animations-fluid-styles-content
-label: 'Fluid Styled Content: Content Animations'
+label: "Content Animations: Fluid Styled Content"
 dependencies:
   - baschte/content-animations

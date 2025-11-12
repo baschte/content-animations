@@ -1,8 +1,11 @@
 <?php
 
-/************************************************************************
- * Extension Manager/Repository config file for ext: "content_animations"
- ***********************************************************************/
+/*
+ * This file is part of the package baschte/content-animations.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Content Animations',
@@ -15,10 +18,10 @@ $EM_CONF[$_EXTKEY] = [
     'uploadfolder' => 0,
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '2.5.5',
+    'version' => '2.6.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.4.0-13.4.99',
+            'typo3' => '13.4.0-13.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

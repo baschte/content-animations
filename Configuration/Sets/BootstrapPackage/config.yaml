@@ -1,4 +1,4 @@
 name: baschte/content-animations-bootstrap-package
-label: 'Bootstrap Package: Content Animations'
+label: "Content Animations: Bootstrap Package"
 dependencies:
   - baschte/content-animations

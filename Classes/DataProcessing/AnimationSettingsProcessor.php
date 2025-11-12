@@ -2,9 +2,18 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the package baschte/content-animations.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace Baschte\ContentAnimations\DataProcessing;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -40,7 +49,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected array $aosBooleanSettings = [
         'disable',
@@ -51,9 +60,16 @@ class AnimationSettingsProcessor implements DataProcessorInterface
     ];
 
     /**
-     * Process data for content animations
+     * @var array<string, mixed>
      */
-    public function process(
+    protected array $animationSettings = [];
+
+    /**
+     * Process data for content animations
+     *
+     * @return array<string, mixed>
+     */
+    public function process(// @phpstan-ignore-line
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
@@ -68,17 +84,13 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             && class_exists(\TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData::class)
             && $sourceData instanceof \TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData
         ) {
-            if (method_exists($sourceData, 'getRawRecord')) {
-                $dataObj = $sourceData->getRawRecord()->toArray();
-            } else {
-                // fallback for TYPO3 12 and content-blocks 0.7.19
-                $dataObj = $sourceData->_raw;
-            }
+            $dataObj = $sourceData->getRawRecord()->toArray();
         } else {
             $dataObj = [];
         }
 
         $optionsToRemove = $this->getOptionsToRemoveFromSettings($cObj, $processorConfiguration);
+        $this->animationSettings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('content_animations');
 
         // remove options from available animations array
         $this->removeOptionsFromAvailableSettings($optionsToRemove);
@@ -151,7 +163,7 @@ class AnimationSettingsProcessor implements DataProcessorInterface
             $value = self::getValueByPath($dataObj, self::DATA_COLUMN_PREFIX . $availableOption);
 
             // check if animation value is set => otherwise return nothing
-            if ($availableOption === 'animation' && empty($value)) {
+            if ($availableOption === 'animation' && ($value === null || $value === '')) {
                 return [];
             }
 
@@ -166,12 +178,15 @@ class AnimationSettingsProcessor implements DataProcessorInterface
         foreach ($this->fallbackAosSettings as $fallbackOption) {
             $fallbackKey = 'data-aos-' . $fallbackOption;
             $processedDataKey = 'aos-' . $fallbackOption;
-
-            if (
-                !array_key_exists($fallbackKey, $animationOptions)
-                && isset($processedData[$processedDataKey])
-                && $processedData[$processedDataKey] !== ''
+            if (!array_key_exists($fallbackKey, $animationOptions) &&
+             array_key_exists($processedDataKey, $processedData) &&
+             $processedData[$processedDataKey] !== ''
             ) {
+                $animationOptions[$fallbackKey] = (string) $processedData[$processedDataKey];
+            }
+
+            // override settings with global defaults if extendedAnimationSettings are not activated
+            if (array_key_exists('extendedAnimationSettings', $this->animationSettings) && $this->animationSettings['extendedAnimationSettings'] !== '1') {
                 $animationOptions[$fallbackKey] = (string) $processedData[$processedDataKey];
             }
         }

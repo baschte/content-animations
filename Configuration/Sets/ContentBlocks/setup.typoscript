@@ -1,0 +1,11 @@
+lib.contentBlock {
+    dataProcessing {
+        78911002 = Baschte\ContentAnimations\DataProcessing\AnimationSettingsProcessor
+    }
+
+    variables {
+        aos-easing < plugin.tx_content_animations.variables.aos-easing
+        aos-once < plugin.tx_content_animations.variables.aos-once
+        aos-mirror < plugin.tx_content_animations.variables.aos-mirror
+    }
+}
