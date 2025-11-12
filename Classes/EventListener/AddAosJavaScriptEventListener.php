@@ -49,7 +49,7 @@ final readonly class AddAosJavaScriptEventListener
             $attributes = [];
             try {
                 $nonce = $this->requestId->nonce->consume();
-                if (!empty($nonce)) {
+                if ($nonce !== '') {
                     // CSP is enabled - add nonce attribute
                     $attributes = ['nonce' => $nonce];
                 }
