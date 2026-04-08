@@ -13,7 +13,6 @@ namespace Baschte\ContentAnimations\Form\Elements;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Backend\Form\Utility\FormEngineUtility;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -225,15 +224,9 @@ class AnimationPreviewField extends AbstractFormElement
             ],
         ];
 
-        if ((new Typo3Version())->getMajorVersion() >= 12) {
-            $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
-                '@baschte/content-animations/preview.js'
-            );
-        } else {
-            $result['requireJsModules'] = [
-                'TYPO3/CMS/ContentAnimations/AnimationPreview',
-            ];
-        }
+        $result['javaScriptModules'][] = JavaScriptModuleInstruction::create(
+            '@baschte/content-animations/preview.js'
+        );
 
         return $result;
     }

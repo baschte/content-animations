@@ -1,4 +1,5 @@
 name: baschte/content-animations-fluid-styles-content
 label: "Content Animations: Fluid Styled Content"
 dependencies:
+  - typo3/fluid-styled-content
   - baschte/content-animations
