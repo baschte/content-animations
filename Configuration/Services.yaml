@@ -31,3 +31,11 @@ services:
         identifier: 'content-animations/add-aos-style'
         event: TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent
         method: '__invoke'
+
+  Baschte\ContentAnimations\EventListener\AddBackendPageTsConfigEventListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'content-animations/add-backend-page-tsconfig'
+        event: TYPO3\CMS\Core\TypoScript\IncludeTree\Event\BeforeLoadedPageTsConfigEvent
+        method: '__invoke'

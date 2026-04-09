@@ -16,16 +16,4 @@ call_user_func(static function () {
         'priority' => '40',
         'class' => \Baschte\ContentAnimations\Form\Elements\AnimationPreviewField::class,
     ];
-
-    // get extensionConfiguration for 'content_animations'
-    $extConf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-        \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
-    )->get('content_animations');
-
-    // register footer preview to tt_content_drawFooter hook if this feature is active
-    if (empty($extConf['hideFooterAnimationLabel']) || !$extConf['hideFooterAnimationLabel']) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'templates.typo3/cms-backend.partialsRootPaths = baschte/content-animations:Resources/Private/TemplateOverrides/typo3/cms-backend'
-        );
-    }
 });

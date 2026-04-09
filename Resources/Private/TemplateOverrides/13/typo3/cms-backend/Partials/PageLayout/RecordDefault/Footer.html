@@ -1,0 +1,12 @@
+<f:if condition="{item.footerInfo} || {item.record.tx_content_animations_animation}">
+    <div class="t3-page-ce-footer">
+        <div class="t3-page-ce-info">
+            <f:if condition="{item.record.tx_content_animations_animation}">
+                <strong>{f:translate(key: 'LLL:EXT:content_animations/Resources/Private/Language/locallang_be.xlf:label.animation')}</strong> {item.record.tx_content_animations_animation}<br>
+            </f:if>
+            <f:if condition="{item.footerInfo}">
+                {item.footerInfo -> f:format.raw()}
+            </f:if>
+        </div>
+    </div>
+</f:if>

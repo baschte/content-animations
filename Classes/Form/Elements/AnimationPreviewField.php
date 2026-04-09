@@ -172,6 +172,7 @@ class AnimationPreviewField extends AbstractFormElement
         $fieldWizardHtml = $fieldWizardResult['html'];
 
         $html = [];
+        $html[] = $this->renderLabel($selectId);
         $html[] = '<div class="formengine-field-item t3js-formengine-field-item">';
         $html[] = $fieldInformationHtml;
         $html[] = '<div class="form-control-wrap">';
