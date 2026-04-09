@@ -179,8 +179,12 @@ class AnimationPreviewField extends AbstractFormElement
         $html[] = '<div class="form-wizards-element">';
         if ($hasIcons) {
             $html[] = '<div class="input-group">';
-            $html[] = '<span class="input-group-addon input-group-icon">';
+            $html[] = '<span class="input-group-text input-group-icon">';
+            $html[] = '<span title="Standard" class="t3js-icon icon icon-size-small icon-state-default" aria-hidden="true">';
+            $html[] = '<span class="icon-markup">';
             $html[] = $selectedIcon;
+            $html[] = '</span>';
+            $html[] = '</span>';
             $html[] = '</span>';
         }
         $html[] = '<select ' . GeneralUtility::implodeAttributes($selectAttributes, true) . '>';
