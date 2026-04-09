@@ -28,7 +28,7 @@ If installed and activated just include the **static typoscript** to your site t
 
   Please note that the version info in the include itself isn't based on the TYPO3 version. It's the major version of, for example, the Bootstrap Package itself. You can get that info in the composer.json or the extension manager.
 
-  **Example:** If you use the Bootstrap Package in version 15.0.x in your project you have to include ``Content Animations: Bootstrap Package v15.x``. If it's in version 14 the ``Content Animations: Bootstrap Package v14.x`` and so on.
+  **Example:** If you use the Bootstrap Package in version 16.0.x in your project you have to include ``Content Animations: Bootstrap Package v16.x``. If it's in version 15 the ``Content Animations: Bootstrap Package v15.x`` and so on.
 
 Content Blocks Support
 =======================
@@ -46,7 +46,7 @@ The extension provides out-of-the-box support for the following rendering engine
 
 Bootstrap Package
 -----------------
-Full support for Bootstrap Package versions 11.x through 15.x with optimized templates and layouts.
+Full support for Bootstrap Package versions 11.x through 16.x with optimized templates and layouts.
 
 Fluid Styled Content
 --------------------

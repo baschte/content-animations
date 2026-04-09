@@ -16,9 +16,9 @@ Bootstrap Package
 -----------------
 Full support for Bootstrap Package versions:
 
-- v15.x (latest)
+- v16.x (latest)
 
-**Static Include:** ``Content Animations: Bootstrap Package v15.x`` (adjust version number accordingly)
+**Static Include:** ``Content Animations: Bootstrap Package v16.x`` (adjust version number accordingly)
 
 Fluid Styled Content
 --------------------

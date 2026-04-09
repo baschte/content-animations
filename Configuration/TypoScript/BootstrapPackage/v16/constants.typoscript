@@ -1,0 +1,2 @@
+# import default constants for content_animations
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:content_animations/Configuration/TypoScript/constants.typoscript">

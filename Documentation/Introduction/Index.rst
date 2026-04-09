@@ -18,7 +18,7 @@ they're scrolled into the browsers viewport.
 
 The extension integrates seamlessly with popular TYPO3 rendering engines:
 
-- **Bootstrap Package** (v15.x)
+- **Bootstrap Package** (v16.x)
 - **Fluid Styled Content**
 - **Content Blocks**
 
